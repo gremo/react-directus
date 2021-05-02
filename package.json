@@ -1,0 +1,51 @@
+{
+  "name": "react-directus",
+  "version": "0.0.1",
+  "description": "A set of React components and utilities for Directus Headless CMS",
+  "files": [
+    "dist"
+  ],
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/types",
+  "scripts": {
+    "lint": "eslint src/* --ext .ts,.tsx",
+    "test": "jest",
+    "prepublishOnly": "npm run build",
+    "build": "rimraf dist && rollup -c"
+  },
+  "keywords": [
+    "react",
+    "react-hooks",
+    "directus",
+    "headless",
+    "cms"
+  ],
+  "author": "Marco Polichetti <gremo1982@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "@directus/sdk": "9.0.0-rc.61",
+    "@rollup/plugin-commonjs": "18.0.0",
+    "@rollup/plugin-node-resolve": "11.2.1",
+    "@testing-library/react": "11.2.6",
+    "@types/jest": "26.0.23",
+    "@types/react": "17.0.4",
+    "@types/react-dom": "17.0.3",
+    "@typescript-eslint/eslint-plugin": "4.22.0",
+    "@typescript-eslint/parser": "4.22.0",
+    "eslint": "7.25.0",
+    "jest": "26.6.3",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "rimraf": "3.0.2",
+    "rollup": "2.46.0",
+    "rollup-plugin-typescript2": "0.30.0",
+    "ts-jest": "26.5.5",
+    "typescript": "4.2.4"
+  },
+  "peerDependencies": {
+    "@directus/sdk": "^9.0.0",
+    "react": "^16.8.0 || ^17.0.0",
+    "react-dom": "^16.8.0 || ^17.0.0"
+  }
+}

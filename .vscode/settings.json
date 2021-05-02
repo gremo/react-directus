@@ -1,0 +1,10 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+  },
+  "files.exclude": {
+    ".vscode": true,
+    "dist": true,
+    "node_modules": true
+  },
+}
