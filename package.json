@@ -25,7 +25,7 @@
   "license": "ISC",
   "devDependencies": {
     "@directus/sdk": "9.0.0-rc.64",
-    "@rollup/plugin-commonjs": "18.1.0",
+    "@rollup/plugin-commonjs": "19.0.0",
     "@rollup/plugin-node-resolve": "13.0.0",
     "@testing-library/react": "11.2.6",
     "@types/jest": "26.0.23",
