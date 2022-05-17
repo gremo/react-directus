@@ -1,7 +1,7 @@
 import { DirectusAsset } from './DirectusAsset';
 import { DirectusAssetRenderer } from './types';
 import React from 'react';
-import { render } from '@testing-library/react'
+import { render } from '@testing-library/react';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const dummyRenderer = jest.fn<JSX.Element, [DirectusAssetRenderer]>(arg => <></>);

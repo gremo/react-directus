@@ -46,6 +46,7 @@
     "prefer-const": "warn",
     "quote-props": ["warn", "consistent-as-needed"],
     "quotes": ["warn", "single"],
+    "semi": "warn",
     "semi-spacing": "warn",
     "sort-imports": ["warn", {
       "ignoreCase": true

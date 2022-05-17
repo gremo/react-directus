@@ -3,7 +3,7 @@ import { DirectusAssetProps } from './types';
 export const DirectusAsset = ({ apiUrl, asset, download = false, render }: DirectusAssetProps): JSX.Element => {
   let params = {};
   if (download) {
-    params = { ...params, download: '' }
+    params = { ...params, download: '' };
   }
 
   return render({

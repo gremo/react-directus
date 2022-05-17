@@ -1,7 +1,7 @@
 import { DirectusImageProps, DirectusImageRenderer } from './types';
 import { DirectusImage } from './DirectusImage';
 import React from 'react';
-import { render } from '@testing-library/react'
+import { render } from '@testing-library/react';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const dummyRenderer = jest.fn<JSX.Element, [DirectusImageRenderer]>(arg => <></>);
