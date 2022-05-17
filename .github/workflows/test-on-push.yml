@@ -30,6 +30,10 @@ jobs:
           REACT_VERSION: "^${{ matrix.react-version }}"
         run: npm install react@$REACT_VERSION react-dom@$REACT_VERSION
 
+      - name: Install React Testing Library
+        if: matrix.react-version == 16
+        run: npm install @testing-library/react@^12
+
       - name: Test
         run: npm test
 
