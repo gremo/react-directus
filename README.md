@@ -13,7 +13,7 @@
 </p>
 
 <p align="center">
-  <a href="https://travis-ci.com/gremo/react-directus"><img alt="Travis build" src="https://travis-ci.com/gremo//react-directus.svg?branch=master" /></a>
+  <a href="https://github.com/gremo/react-directus/actions/workflows/test-on-push.yml"><img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/gremo/react-directus/Test"></a>
   <a href="https://github.com/gremo/react-directus/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/gremo/react-directus.svg" /></a>
   <a href="https://github.com/gremo/react-directus/pulls"><img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/gremo/react-directus"></a>
   <img alt="Libraries.io dependency status for GitHub repo" src="https://img.shields.io/librariesio/github/gremo/react-directus">
