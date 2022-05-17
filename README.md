@@ -7,10 +7,15 @@
 </p>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/react-directus"><img src="https://img.shields.io/npm/v/react-directus.svg" alt="NPM version" /></a>
-  <a href="https://www.npmjs.com/package/react-directus"><img src="https://img.shields.io/npm/dw/react-directus.svg" alt="NPM downloads" /></a>
-  <a href="https://travis-ci.com/gremo//react-directus"><img src="https://travis-ci.com/gremo//react-directus.svg?branch=master" alt="Travis build" /></a>
-  <a href="https://github.com/gremo/react-directus/issues"><img src="https://img.shields.io/github/issues/gremo/react-directus.svg" alt="GitHub issues" /></a>
+  <a href="https://www.npmjs.com/package/react-directus"><img alt="NPM version" src="https://img.shields.io/npm/v/react-directus.svg" /></a>
+  <a href="https://www.npmjs.com/package/react-directus"><img alt="NPM downloads" src="https://img.shields.io/npm/dw/react-directus.svg" /></a>
+  <a href="https://paypal.me/marcopolichetti" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
+</p>
+
+<p align="center">
+  <a href="https://travis-ci.com/gremo/react-directus"><img alt="Travis build" src="https://travis-ci.com/gremo//react-directus.svg?branch=master" /></a>
+  <a href="https://github.com/gremo/react-directus/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/gremo/react-directus.svg" /></a>
+  <a href="https://github.com/gremo/react-directus/pulls"><img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/gremo/react-directus"></a>
   <img alt="Libraries.io dependency status for GitHub repo" src="https://img.shields.io/librariesio/github/gremo/react-directus">
 </p>
 
@@ -131,8 +136,13 @@ export const TodoItem = ({ item }) => {
 
 New features and bugfix are always welcome! In order to contribute to this project, follow a few easy steps:
 
+<p align="center">
+  <a href="https://paypal.me/marcopolichetti" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
+</p>
+
 1. [Fork](https://help.github.com/en/github/getting-started-with-github/fork-a-repo) this repository, clone it on your machine and run `npm install`
 2. Open your local repository with [Visual Studio Code](https://code.visualstudio.com) and install all the suggested extensions
 3. Create a branch `my-awesome-feature` and commit to it
 4. Run `npm run lint` and `npm run build` and verify that they complete without errors
 5. Push `my-awesome-feature` branch to GitHub and open a [pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests)
+6. Liked some of my work? Buy me a ☕ (or more likely 🍺)
