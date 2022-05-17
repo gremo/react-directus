@@ -27,7 +27,7 @@ Install this library along with `@directus/sdk`:
 npm install react-directus @directus/sdk
 ```
 
-The `<DirectusProvider>` component makes the Directus SDK available to any nested components that need to access it. Assuming that the `<App />` component is the root-level component:
+The `<DirectusProvider>` component makes the [Directus JavaScript SDK](https://docs.directus.io/reference/sdk/) available to any nested components that need to access it. Assuming that `<App />` component is your root component:
 
 ```jsx
 import { App } from './App';
@@ -43,7 +43,7 @@ ReactDOM.render(
 );
 ```
 
-You can optionally pass an `apiOptions` object to the provider, it will be passed to the client [`options`](https://docs.directus.io/reference/sdk/#advanced-example).
+You can optionally pass an `apiOptions` object to the provider, it will be passed to the client as the [`init`](https://docs.directus.io/reference/sdk/#reference) parameter.
 
 ## ⚙️ The hook `useDirectus`
 
@@ -51,7 +51,7 @@ After adding the provider, you can access the configured client anywhere in the 
 
 ```jsx
 import React, { useEffect, useState } from 'react';
-import { useDirectus } from 'directus-react'
+import { useDirectus } from 'react-directus'
 
 export const TodoList = () => {
   // Get the Directus SDK object
@@ -71,23 +71,23 @@ export const TodoList = () => {
 };
 ```
 
-## Components
+## 🧩 Components (so far...)
 
-The hook exports also the `<DirectusAsset>` and `<DirectusImage>` components, for easy access to API [assets](https://docs.directus.io/reference/api/assets/). They are configured for using the `apiUrl` specified in the provider.
+The hook exports a few components for working with Direcuts files [file access](https://docs.directus.io/reference/files/). They are all configured for using the `apiUrl` specified in the provider. Hopefully, more will come in the future 🤗.
 
-These components, when imported from `react-directus` directly (i.e. not using the hook), can be used in a "standalone" way, meaning that they are not bound to the `apiUrl` specified in the provider. In that case, they both accept an `apiUrl` prop.
+> All components, when imported from `react-directus` directly (i.e. not imported using the hook `useDirectus`), can be used in a "standalone" way. It means that they are not bound to the `apiUrl` specified in the provider. In that case, they both accept an `apiUrl` prop.
 
 ### `<DirectusAsset>`
 
 Computes the URL of the given resource `asset`, rendering it using the `render` prop:
 
 - `asset`: the asset representing the resource (`string` or `object` with an `id` property)
-- `render`: a function (which receive an object with the `url` property) that should return the component to render
 - `download`: force browser to download the asset (force the `Content-Disposition` header)
+- `render`: a function (which receives an object with the `url` property) that provides the component to render
 
 ```jsx
 import React from 'react';
-import { useDirectus } from 'directus-react'
+import { useDirectus } from 'react-directus';
 
 export const TodoItem = ({ item }) => {
   const { DirectusAsset } = useDirectus();
@@ -95,8 +95,7 @@ export const TodoItem = ({ item }) => {
   return (
     <div>
       <h1>Todo #{item.id}</h1>
-      <DirectusAsset asset={item.attachment}
-        download={true}
+      <DirectusAsset asset={item.attachment} download={true}
         render={({ asset, url }) => <a href={url}>{asset.filename_download}</a>} />
     </div>
   );
@@ -108,25 +107,24 @@ export const TodoItem = ({ item }) => {
 Computes the URL of the given resource `asset`, rendering it using the `render` prop:
 
 - `asset`: the asset representing the resource (`string` or `object` with an `id` property)
-- `render`: a function (which receive an object with the `url` property) that should return the component to render
 - `fit`: fit of the thumbnail while always preserving the aspect ratio, can be any of the following options: `cover`, `contain`, `inside` or `outside`
 - `height`: height of the thumbnail in pixels
 - `quality`: quality of the thumbnail (`1` to `100`)
 - `width`: width of the thumbnail in pixels
+- `render`: a function (which receives an object with the `url` property) that provides the component to render
 
 ```jsx
 import React from 'react';
-import { useDirectus } from 'directus-react'
+import { useDirectus } from 'react-directus';
 
 export const TodoItem = ({ item }) => {
   const { DirectusImage } = useDirectus();
 
   return (
     <div>
-      <DirectusImage asset={item.image}
-        fit="cover" quality="75"
-        render={({ asset, url }) => <img src={url} alt={asset.title} />} />
       <h1>Todo #{item.id}</h1>
+      <DirectusImage asset={item.image} fit="cover" quality="75"
+        render={({ asset, url }) => <img src={url} alt={asset.title} />} />
     </div>
   );
 };
@@ -134,7 +132,7 @@ export const TodoItem = ({ item }) => {
 
 ## ❤️ Contributing
 
-New features and bugfix are always welcome! In order to contribute to this project, follow a few easy steps:
+New features and bug-fix are always welcome! In order to contribute to this project, follow a few easy steps:
 
 <p align="center">
   <a href="https://paypal.me/marcopolichetti" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
@@ -143,6 +141,6 @@ New features and bugfix are always welcome! In order to contribute to this proje
 1. [Fork](https://help.github.com/en/github/getting-started-with-github/fork-a-repo) this repository, clone it on your machine and run `npm install`
 2. Open your local repository with [Visual Studio Code](https://code.visualstudio.com) and install all the suggested extensions
 3. Create a branch `my-awesome-feature` and commit to it
-4. Run `npm run lint` and `npm run build` and verify that they complete without errors
+4. Run `npm run lint`, `npm run test` and `npm run build` and verify that they complete without errors
 5. Push `my-awesome-feature` branch to GitHub and open a [pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests)
 6. Liked some of my work? Buy me a ☕ (or more likely 🍺)
