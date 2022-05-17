@@ -1,6 +1,7 @@
 {
   "displayName": "react-directus",
   "preset": "ts-jest",
+  "testEnvironment": "jsdom",
   "testMatch": [
     "<rootDir>/src/**/*(*.)@(spec|test).[tj]s?(x)"
   ]
