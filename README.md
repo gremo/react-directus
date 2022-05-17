@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://directus.io"><img src="https://user-images.githubusercontent.com/522079/89687381-23943700-d8ce-11ea-9a4d-ae3eae136423.png" alt="Directus logo" width="320" /></a>
+  <a href="https://directus.io"><img alt="Directus logo" src="https://user-images.githubusercontent.com/522079/158864859-0fbeae62-9d7a-4619-b35e-f8fa5f68e0c8.png" /></a>
 </p>
 
 <p align="center">
