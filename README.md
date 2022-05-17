@@ -11,8 +11,7 @@
   <a href="https://www.npmjs.com/package/react-directus"><img src="https://img.shields.io/npm/dw/react-directus.svg" alt="NPM downloads" /></a>
   <a href="https://travis-ci.com/gremo//react-directus"><img src="https://travis-ci.com/gremo//react-directus.svg?branch=master" alt="Travis build" /></a>
   <a href="https://github.com/gremo/react-directus/issues"><img src="https://img.shields.io/github/issues/gremo/react-directus.svg" alt="GitHub issues" /></a>
-  <a href="https://david-dm.org/gremo/react-directus"><img src="https://img.shields.io/david/gremo/react-directus.svg" alt="dependencies status"></a>
-  <a href="https://david-dm.org/gremo/react-directus?type=dev"><img src="https://david-dm.org/gremo/react-directus/dev-status.svg" alt="devDependencies status" /></a>
+  <img alt="Libraries.io dependency status for GitHub repo" src="https://img.shields.io/librariesio/github/gremo/react-directus">
 </p>
 
 ## 🚀 Quick start
