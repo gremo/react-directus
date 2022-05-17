@@ -13,10 +13,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          repository: gremo/react-directus
           fetch-depth: 0
 
-      - name: Setup node
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 12.22.0
@@ -24,14 +23,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Install React
+      - name: Install react
         if: matrix.react-version
         env:
           REACT_VERSION: "^${{ matrix.react-version }}"
         run: npm install react@$REACT_VERSION react-dom@$REACT_VERSION
 
-      - name: Install React Testing Library
-        if: matrix.react-version == 16
+      - name: Install @testing-library/react
+        if: matrix.react-version <= 16
         run: npm install @testing-library/react@^12
 
       - name: Test
