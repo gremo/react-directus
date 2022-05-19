@@ -24,7 +24,7 @@
   "author": "Marco Polichetti <gremo1982@gmail.com>",
   "license": "ISC",
   "devDependencies": {
-    "@directus/sdk": "9.10.0",
+    "@directus/sdk": "9.11.0",
     "@rollup/plugin-commonjs": "22.0.0",
     "@rollup/plugin-node-resolve": "13.3.0",
     "@testing-library/react": "13.2.0",
