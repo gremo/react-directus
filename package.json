@@ -27,7 +27,7 @@
     "@directus/sdk": "9.11.1",
     "@rollup/plugin-commonjs": "22.0.0",
     "@rollup/plugin-node-resolve": "13.3.0",
-    "@testing-library/react": "13.2.0",
+    "@testing-library/react": "13.3.0",
     "@types/jest": "27.5.1",
     "@types/react": "18.0.9",
     "@types/react-dom": "18.0.5",
