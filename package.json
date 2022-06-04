@@ -33,7 +33,7 @@
     "@types/react-dom": "18.0.5",
     "@typescript-eslint/eslint-plugin": "5.27.0",
     "@typescript-eslint/parser": "5.27.0",
-    "eslint": "8.16.0",
+    "eslint": "8.17.0",
     "jest": "28.1.0",
     "jest-environment-jsdom": "28.1.0",
     "react": "18.1.0",
