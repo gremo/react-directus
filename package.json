@@ -12,7 +12,7 @@
     "lint": "eslint src/* --ext .ts,.tsx",
     "test": "jest",
     "prepublishOnly": "npm run build",
-    "build": "rimraf dist && rollup -c"
+    "build": "rimraf dist/* && rollup -c"
   },
   "keywords": [
     "react",
