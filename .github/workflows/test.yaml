@@ -2,6 +2,13 @@ name: Test
 
 on:
   push:
+    paths:
+      - .github/workflows/test.yaml
+      - src/**
+      - jest.config.json
+      - package.json
+      - rollup.config.js
+      - tsconfig.json
 
 jobs:
   test:
