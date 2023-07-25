@@ -16,7 +16,7 @@ export const DirectusProvider = ({ apiUrl, options, children }: DirectusProvider
       DirectusAsset,
       DirectusImage,
     }),
-    [apiUrl]
+    [apiUrl, options]
   );
 
   return <DirectusContext.Provider value={value}>{children}</DirectusContext.Provider>;
