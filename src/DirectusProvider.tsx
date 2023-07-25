@@ -13,8 +13,8 @@ export const DirectusProvider = ({ apiUrl, options, children }: DirectusProvider
     () => ({
       apiUrl: apiUrl,
       directus: new Directus(apiUrl, options),
-      DirectusAsset: DirectusAsset,
-      DirectusImage: DirectusImage,
+      DirectusAsset,
+      DirectusImage,
     }),
     [apiUrl]
   );
