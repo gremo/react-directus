@@ -15,7 +15,6 @@ export const DirectusAsset = ({
 
   const generateUrl = async () => {
     const assetId = asset && 'object' === typeof asset ? asset.id : asset;
-    setAssetUrl('fin');
     if (!assetId) {
       return;
     }
