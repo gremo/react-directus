@@ -11,16 +11,13 @@
   "rules": {
     "prettier/prettier": "error",
     "consistent-return": "warn",
-    "curly": ["warn", "all"],
     "eqeqeq": "warn",
-
     "new-cap": [
       "warn",
       {
         "capIsNewExceptions": []
       }
     ],
-
     "no-nested-ternary": "warn",
     "no-return-assign": ["warn", "always"],
     "no-unneeded-ternary": "warn",
