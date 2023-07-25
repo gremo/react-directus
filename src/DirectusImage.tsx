@@ -5,6 +5,8 @@ export const DirectusImage = ({ apiUrl, asset, render, ...params }: DirectusImag
     apiUrl,
     asset,
     ...params,
-    url: `${apiUrl}/assets/${'object' === typeof asset ? asset.id : asset}?${(new URLSearchParams(params as Record<string, string>)).toString()}`
+    url: `${apiUrl}/assets/${'object' === typeof asset ? asset.id : asset}?${new URLSearchParams(
+      params as Record<string, string>
+    ).toString()}`,
   });
 };

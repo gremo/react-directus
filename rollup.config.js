@@ -16,9 +16,5 @@ export default {
     },
   ],
   external: ['@directus/sdk', 'react'],
-  plugins: [
-    resolve(),
-    commonjs(),
-    typescript({ useTsconfigDeclarationDir: true })
-  ]
+  plugins: [resolve(), commonjs(), typescript({ useTsconfigDeclarationDir: true })],
 };

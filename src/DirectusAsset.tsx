@@ -10,6 +10,6 @@ export const DirectusAsset = ({ apiUrl, asset, download = false, render }: Direc
     apiUrl,
     asset,
     download,
-    url: `${apiUrl}/assets/${'object' === typeof asset ? asset.id : asset}?${(new URLSearchParams(params)).toString()}`,
+    url: `${apiUrl}/assets/${'object' === typeof asset ? asset.id : asset}?${new URLSearchParams(params).toString()}`,
   });
 };

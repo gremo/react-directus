@@ -1,70 +1,44 @@
 {
   "root": true,
   "parser": "@typescript-eslint/parser",
-  "plugins": [
-    "@typescript-eslint"
-  ],
-  "extends": [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended"
-  ],
+  "plugins": ["@typescript-eslint", "prettier"],
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended", "plugin:prettier/recommended"],
   "env": {
     "browser": true,
     "es6": true,
     "node": true
   },
   "rules": {
-    "array-bracket-spacing": "warn",
-    "arrow-parens": ["warn", "as-needed"],
-    "arrow-spacing": "warn",
-    "brace-style": "warn",
-    "comma-spacing": "warn",
-    "computed-property-spacing": "warn",
+    "prettier/prettier": "error",
     "consistent-return": "warn",
     "curly": ["warn", "all"],
-    "eol-last": "warn",
     "eqeqeq": "warn",
-    "func-call-spacing": "warn",
-    "indent": ["warn", 2, {
-      "SwitchCase": 1
-    }],
-    "key-spacing": ["warn"],
-    "new-cap": ["warn", {
-      "capIsNewExceptions": []
-    }],
-    "new-parens": "warn",
-    "no-multiple-empty-lines": ["warn", {
-      "max": 1
-    }],
+
+    "new-cap": [
+      "warn",
+      {
+        "capIsNewExceptions": []
+      }
+    ],
+
     "no-nested-ternary": "warn",
     "no-return-assign": ["warn", "always"],
-    "no-trailing-spaces": "warn",
     "no-unneeded-ternary": "warn",
     "no-var": "warn",
-    "object-curly-spacing": ["warn", "always"],
-    "padded-blocks": ["warn", "never"],
     "prefer-const": "warn",
-    "quote-props": ["warn", "consistent-as-needed"],
-    "quotes": ["warn", "single"],
-    "semi": "warn",
-    "semi-spacing": "warn",
-    "sort-imports": ["warn", {
-      "ignoreCase": true
-    }],
-    "space-before-blocks": ["warn", "always"],
-    "space-before-function-paren": ["warn", {
-      "anonymous": "always",
-      "asyncArrow": "always",
-      "named": "never"
-    }],
-    "space-in-parens": "warn",
-    "space-infix-ops": ["warn", {
-      "int32Hint": true
-    }],
-    "space-unary-ops": "warn",
+    "sort-imports": [
+      "warn",
+      {
+        "ignoreCase": true
+      }
+    ],
     "spaced-comment": ["warn", "always"],
-    "yoda": ["warn", "always", {
-      "onlyEquality": true
-    }]
+    "yoda": [
+      "warn",
+      "always",
+      {
+        "onlyEquality": true
+      }
+    ]
   }
 }
