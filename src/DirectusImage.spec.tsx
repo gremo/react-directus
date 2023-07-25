@@ -3,8 +3,7 @@ import { DirectusImage } from './DirectusImage';
 import React from 'react';
 import { render } from '@testing-library/react';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const dummyRenderer = jest.fn<JSX.Element, [DirectusImageRenderer]>(arg => <></>);
+const dummyRenderer = jest.fn<JSX.Element, [DirectusImageRenderer]>(() => <></>);
 
 beforeEach(() => {
   dummyRenderer.mockClear();
@@ -37,7 +36,7 @@ describe('Component', () => {
   ])('pass the props to the renderer', props => {
     render(<DirectusImage {...(props as DirectusImageProps)} render={dummyRenderer} />);
 
-    const rendererArg = dummyRenderer.mock.calls[0][0];
+    const rendererArg = dummyRenderer.mock.calls[1][0];
     expect(rendererArg).toMatchObject(props);
   });
 
@@ -55,7 +54,7 @@ describe('Component', () => {
       />
     );
 
-    const { url } = dummyRenderer.mock.calls[0][0];
+    const { url } = dummyRenderer.mock.calls[1][0];
     expect(url).toContain('http://example.com/assets/8ac24997-cda5-4675-a1e0-1af72fddd220?');
     expect(url).toContain('width=640');
     expect(url).toContain('height=480');
