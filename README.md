@@ -79,7 +79,7 @@ export const TodoList = () => {
 
 The hook exports a few components for working with Direcuts files [file access](https://docs.directus.io/reference/files/). They are all configured for using the `apiUrl` specified in the provider. Hopefully, more will come in the future 🤗.
 
-> All components, when imported from `react-directus` directly (i.e. not imported using the hook `useDirectus`), can be used in a "standalone" way. It means that they are not bound to the `apiUrl` specified in the provider. In that case, they both accept an `apiUrl` prop.
+> All components, can be used in a "standalone" way. It means that they are not bound to the `apiUrl` specified in the provider. In that case, they both require an `apiUrl` and an optional `accsessToken` prop.
 
 ### `<DirectusAsset>`
 
@@ -91,11 +91,9 @@ Computes the URL of the given resource `asset`, rendering it using the `render` 
 
 ```jsx
 import React from 'react';
-import { useDirectus } from 'react-directus';
+import { DirectusAsset } from 'react-directus';
 
 export const TodoItem = ({ item }) => {
-  const { DirectusAsset } = useDirectus();
-
   return (
     <div>
       <h1>Todo #{item.id}</h1>
@@ -108,22 +106,26 @@ export const TodoItem = ({ item }) => {
 
 ### `<DirectusImage>`
 
-Computes the URL of the given resource `asset`, rendering it using the `render` prop:
+Computes the URL of the given resource `asset`, rendering it using the `render` prop.
+Implements all directus Transformatrions, as of the time of writing. For further information, see the [Directus documentation](https://docs.directus.io/reference/files/#requesting-a-thumbnail).
+:
 
 - `asset`: the asset representing the resource (`string` or `object` with an `id` property)
+- `key`: Key for [Storage Asset Preset](https://docs.directus.io/user-guide/cloud/project-settings.html#files-thumbnails)
 - `fit`: fit of the thumbnail while always preserving the aspect ratio, can be any of the following options: `cover`, `contain`, `inside` or `outside`
 - `height`: height of the thumbnail in pixels
-- `quality`: quality of the thumbnail (`1` to `100`)
 - `width`: width of the thumbnail in pixels
+- `quality`: quality of the thumbnail (`1` to `100`), defaults to `75`
+- `format`: the return file format
+- `withoutEnlargement`: if `true`, the thumbnail will not be larger than the original image
+- `transforms`: an array of [Sharp transforms](https://sharp.pixelplumbing.com/api-operation) to apply to the image
 - `render`: a function (which receives an object with the `url` property) that provides the component to render
 
 ```jsx
 import React from 'react';
-import { useDirectus } from 'react-directus';
+import { DirectusImage } from 'react-directus';
 
 export const TodoItem = ({ item }) => {
-  const { DirectusImage } = useDirectus();
-
   return (
     <div>
       <h1>Todo #{item.id}</h1>

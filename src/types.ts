@@ -1,5 +1,7 @@
 import * as React from 'react';
+
 import { DirectusOptions, IDirectus } from '@directus/sdk';
+
 import { DirectusAsset } from './DirectusAsset';
 import { DirectusImage } from './DirectusImage';
 
@@ -12,7 +14,7 @@ export type DirectusAsset = string | ({ id: string } & Record<string, any>);
 /**
  * Shape of the `DirectusAsset` component `render` prop.
  */
-export type DirectusAssetRenderer = Omit<DirectusAssetProps, 'render'> & {
+export type DirectusAssetRenderer = Omit<DirectusAssetProps, 'render' | 'accessToken'> & {
   url?: string;
 };
 
@@ -22,6 +24,8 @@ export type DirectusAssetRenderer = Omit<DirectusAssetProps, 'render'> & {
 export interface DirectusAssetProps {
   /** Directus CMS API url. */
   apiUrl: string;
+  /** The token to use for authentication. */
+  accsessToken?: string;
   /** The asset as `string` or `object` with an `id` property of type `string`. */
   asset: DirectusAsset;
   /** Add `Content-Disposition` header and force browser to download file. */
@@ -33,7 +37,7 @@ export interface DirectusAssetProps {
 /**
  * Shape of the `DirectusImage` component `render` prop.
  */
-export type DirectusImageRenderer = Omit<DirectusImageProps, 'render'> & {
+export type DirectusImageRenderer = Omit<DirectusImageProps, 'render' | 'accessToken'> & {
   url?: string;
 };
 
@@ -47,8 +51,17 @@ export interface DirectusImageProps extends Omit<DirectusAssetProps, 'download' 
   height?: number;
   /** The quality of the thumbnail (1 to 100). */
   quality?: number;
+  /** Key for Storage Asset Preset ( https://docs.directus.io/user-guide/cloud/project-settings.html#files-thumbnails ). */
+  key?: string;
   /** The fit of the thumbnail while always preserving the aspect ratio. */
   fit?: 'cover' | 'contain' | 'inside' | 'outside';
+  /** What file format to return the image in. */
+  format?: 'auto' | 'jpg' | 'png' | 'webp' | 'tiff';
+  /** Disable image up-scaling. */
+  withoutEnlargement?: boolean;
+  /** An array of sharp operations to apply to the image. */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  transforms?: [string, ...any[]][];
   /** A function that returns the React element to be rendered. It will receive an object with the `url` key and all the passed props. */
   render: (args: DirectusImageRenderer) => JSX.Element;
 }
@@ -73,7 +86,7 @@ export interface DirectusProviderProps {
 /**
  * Shape of the main context.
  */
-export interface DirectusContextTpye {
+export interface DirectusContextType {
   apiUrl: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   directus: IDirectus<any>;
