@@ -79,9 +79,9 @@ export const TodoList = () => {
 
 ## 🧩 Components (so far...)
 
-The hook exports a few components for working with Direcuts files [file access](https://docs.directus.io/reference/files/). They are all configured for using the `apiUrl` specified in the provider. Hopefully, more will come in the future 🤗.
+This package contains a few components for working with Direcuts files [file access](https://docs.directus.io/reference/files/). They are all configured for using the `apiUrl` specified in the provider. Hopefully, more will come in the future 🤗.
 
-> All components, when imported from `react-directus` directly (i.e. not imported using the hook `useDirectus`), can be used in a "standalone" way. It means that they are not bound to the `apiUrl` specified in the provider. In that case, they both accept an `apiUrl` prop.
+> All components can be used in a "standalone" way. It means that they are not bound to the `apiUrl` specified in the provider. In that case, they both accept an `apiUrl` prop.
 
 ### `<DirectusAsset>`
 
@@ -93,11 +93,9 @@ Computes the URL of the given resource `asset`, rendering it using the `render` 
 
 ```jsx
 import React from 'react';
-import { useDirectus } from 'react-directus';
+import { DirectusAsset } from 'react-directus';
 
 export const TodoItem = ({ item }) => {
-  const { DirectusAsset } = useDirectus();
-
   return (
     <div>
       <h1>Todo #{item.id}</h1>
@@ -121,11 +119,9 @@ Computes the URL of the given resource `asset`, rendering it using the `render` 
 
 ```jsx
 import React from 'react';
-import { useDirectus } from 'react-directus';
+import { DirectusImage } from 'react-directus';
 
 export const TodoItem = ({ item }) => {
-  const { DirectusImage } = useDirectus();
-
   return (
     <div>
       <h1>Todo #{item.id}</h1>

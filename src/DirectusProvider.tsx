@@ -1,11 +1,5 @@
 import * as React from 'react';
-import {
-  DirectusAssetProps,
-  DirectusAssetPropsContextualized,
-  DirectusContextTpye,
-  DirectusImageProps,
-  DirectusProviderProps,
-} from './types';
+import { DirectusAssetProps, DirectusContextTpye, DirectusImageProps, DirectusProviderProps } from './types';
 import { Directus } from '@directus/sdk';
 import { DirectusAsset } from './DirectusAsset';
 import { DirectusImage } from './DirectusImage';
@@ -17,12 +11,14 @@ export const DirectusProvider = ({ apiUrl, options, children }: DirectusProvider
     () => ({
       apiUrl: apiUrl,
       directus: new Directus(apiUrl, options),
-      DirectusAsset: (props: DirectusAssetPropsContextualized<DirectusAssetProps>): JSX.Element => (
-        <DirectusAsset apiUrl={apiUrl} {...props} />
-      ),
-      DirectusImage: (props: DirectusAssetPropsContextualized<DirectusImageProps>): JSX.Element => (
-        <DirectusImage apiUrl={apiUrl} {...props} />
-      ),
+      DirectusAsset: ({ asset, render, ...props }: DirectusAssetProps) => {
+        console.warn('Deprecated: Please import DirectusAsset directly from react-directus');
+        return <DirectusAsset asset={asset} render={render} {...props} />;
+      },
+      DirectusImage: ({ asset, render, ...props }: DirectusImageProps) => {
+        console.warn('Deprecated: Please import DirectusImage directly from react-directus');
+        return <DirectusImage asset={asset} render={render} {...props} />;
+      },
     }),
     [apiUrl]
   );
