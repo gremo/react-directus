@@ -134,6 +134,35 @@ export const TodoItem = ({ item }) => {
 };
 ```
 
+## 📱 React Native
+
+To make the project fully compatible with React Native you need to install the [localstorage-polyfill](https://www.npmjs.com/package/localstorage-polyfill) package:
+
+```bash
+npm install localstorage-polyfill
+```
+
+Then import the module **before any other import** and force the storage mode "LocalStorage" in your Directus instance:
+
+```jsx
+import 'localstorage-polyfill';
+import { DirectusProvider } from 'react-directus';
+import { View } from 'react-native';
+
+export default function App({}) {
+    return (
+        <DirectusProvider
+            apiUrl='https://api.example.com'
+            options={{ storage: { mode: 'LocalStorage' } }}
+        >
+            <View />
+        </DirectusProvider>
+    )
+}
+```
+
+In future releases, a solution using `AsyncStorage` or an encrypted secure storage option is planned.
+
 ## ❤️ Contributing
 
 All types of contributions are encouraged and valued. See the [Contributing](CONTRIBUTING.md) guidelines, the community looks forward to your contributions!
