@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { DirectusAssetProps, DirectusContextTpye, DirectusImageProps, DirectusProviderProps } from './types';
+import { DirectusAssetProps, DirectusContextType, DirectusImageProps, DirectusProviderProps } from './types';
 import { Directus } from '@directus/sdk';
 import { DirectusAsset } from './DirectusAsset';
 import { DirectusImage } from './DirectusImage';
