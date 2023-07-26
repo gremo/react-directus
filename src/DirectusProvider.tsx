@@ -24,10 +24,18 @@ export const DirectusProvider = ({ apiUrl, options, children }: DirectusProvider
         <DirectusImage apiUrl={apiUrl} {...props} />
       ),
     }),
-    [apiUrl]
+    [apiUrl, options]
   );
 
   return <DirectusContext.Provider value={value}>{children}</DirectusContext.Provider>;
 };
 
-export const useDirectus = (): null | DirectusContextTpye => React.useContext(DirectusContext);
+export const useDirectus = () => {
+  const directusContext = React.useContext(DirectusContext);
+
+  if (!directusContext) {
+    throw new Error('useDirectus has to be used within the DirectusProvider');
+  }
+
+  return directusContext;
+};
