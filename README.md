@@ -79,7 +79,7 @@ export const TodoList = () => {
 
 The hook exports a few components for working with Direcuts files [file access](https://docs.directus.io/reference/files/). They are all configured for using the `apiUrl` specified in the provider. Hopefully, more will come in the future 🤗.
 
-> All components, can be used in a "standalone" way. It means that they are not bound to the `apiUrl` specified in the provider. In that case, they both require an `apiUrl` and an optional `accsessToken` prop.
+Note that all components can also be used in a "standalone" way, meaning that they are not bound to the `apiUrl` specified in the provider. In that case, they both require an `apiUrl` and an optional `accessToken` prop.
 
 ### `<DirectusAsset>`
 
