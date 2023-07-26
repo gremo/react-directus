@@ -10,7 +10,7 @@ export const DirectusImage = ({ apiUrl: propsApiUrl, asset, render, ...params }:
     throw new Error('DirectusAsset requires either a DirectusProvider or an apiUrl prop');
   }
 
-  const apiUrl = propsApiUrl || directusContext?.apiUrl;
+  const apiUrl = propsApiUrl || directusContext.apiUrl;
 
   return render({
     apiUrl,

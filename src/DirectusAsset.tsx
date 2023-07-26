@@ -14,12 +14,13 @@ export const DirectusAsset = ({
   if (!directusContext && !propsApiUrl) {
     throw new Error('DirectusAsset requires either a DirectusProvider or an apiUrl prop');
   }
+
   let params = {};
   if (download) {
     params = { ...params, download: '' };
   }
 
-  const apiUrl = propsApiUrl || directusContext?.apiUrl;
+  const apiUrl = propsApiUrl || directusContext.apiUrl;
 
   return render({
     apiUrl,
