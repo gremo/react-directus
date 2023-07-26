@@ -25,11 +25,13 @@
 
 ## 🚀 Quick start
 
-Install this library along with `@directus/sdk`:
+Install this library along with `@directus/sdk@` Version 10.3.5 or below:
 
 ```bash
-npm install react-directus @directus/sdk
+npm install react-directus @directus/sdk@^10.0.0
 ```
+
+> Directus SDK versions 11 and upwards are currently not supported, but active work is in progress to add support for these versions in future releases.
 
 The `<DirectusProvider>` component makes the [Directus JavaScript SDK](https://docs.directus.io/reference/sdk/) available to any nested components that need to access it. Assuming that `<App />` component is your root component:
 
