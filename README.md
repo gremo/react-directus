@@ -38,14 +38,14 @@ The `<DirectusProvider>` component makes the [Directus JavaScript SDK](https://d
 ```jsx
 import { App } from './App';
 import { DirectusProvider } from 'react-directus';
-import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
-ReactDOM.render(
+const root = createRoot(document.getElementById('root'));
+
+root.render(
   <DirectusProvider apiUrl="https://api.example.com" options={{}}>
     <App />
-  </DirectusProvider>,
-  document.getElementById('root')
+  </DirectusProvider>
 );
 ```
 
