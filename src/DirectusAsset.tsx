@@ -10,13 +10,13 @@ export const DirectusAsset = ({
   render,
 }: DirectusAssetProps): JSX.Element => {
   const directusContext = React.useContext(DirectusContext);
-  let params = {};
-  if (download) {
-    params = { ...params, download: '' };
-  }
 
   if (!directusContext && !propsApiUrl) {
     throw new Error('DirectusAsset requires either a DirectusProvider or an apiUrl prop');
+  }
+  let params = {};
+  if (download) {
+    params = { ...params, download: '' };
   }
 
   const apiUrl = propsApiUrl || directusContext?.apiUrl;
