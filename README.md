@@ -40,14 +40,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 ReactDOM.render(
-  <DirectusProvider apiUrl="https://api.example.com">
+  <DirectusProvider apiUrl="https://api.example.com" options={{}}>
     <App />
   </DirectusProvider>,
   document.getElementById('root')
 );
 ```
 
-You can optionally pass an `apiOptions` object to the provider, it will be passed to the client as the [`init`](https://docs.directus.io/reference/sdk/#reference) parameter.
+You can optionally pass an `options` object to the provider, it will be passed to the directus client as the [`init`](https://docs.directus.io/reference/sdk/#reference) parameter.
 
 ## ⚙️ The hook `useDirectus`
 
