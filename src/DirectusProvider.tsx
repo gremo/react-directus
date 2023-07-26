@@ -1,13 +1,14 @@
 import * as React from 'react';
+
 import { DirectusAssetProps, DirectusContextTpye, DirectusImageProps, DirectusProviderProps } from './types';
 import { Directus } from '@directus/sdk';
 import { DirectusAsset } from './DirectusAsset';
 import { DirectusImage } from './DirectusImage';
 
-export const DirectusContext = React.createContext<DirectusContextTpye | null>(null);
+export const DirectusContext = React.createContext<DirectusContextType | null>(null);
 
 export const DirectusProvider = ({ apiUrl, options, children }: DirectusProviderProps): JSX.Element => {
-  const value = React.useMemo<DirectusContextTpye>(
+  const value = React.useMemo<DirectusContextType>(
     () => ({
       apiUrl: apiUrl,
       directus: new Directus(apiUrl, options),
@@ -20,10 +21,18 @@ export const DirectusProvider = ({ apiUrl, options, children }: DirectusProvider
         return <DirectusImage asset={asset} render={render} {...props} />;
       },
     }),
-    [apiUrl]
+    [apiUrl, options]
   );
 
   return <DirectusContext.Provider value={value}>{children}</DirectusContext.Provider>;
 };
 
-export const useDirectus = (): null | DirectusContextTpye => React.useContext(DirectusContext);
+export const useDirectus = () => {
+  const directusContext = React.useContext(DirectusContext);
+
+  if (!directusContext) {
+    throw new Error('useDirectus has to be used within the DirectusProvider');
+  }
+
+  return directusContext;
+};
