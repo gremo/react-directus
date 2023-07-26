@@ -21,7 +21,7 @@ export type DirectusAssetRenderer = Omit<DirectusAssetProps, 'render'> & {
  */
 export interface DirectusAssetProps {
   /** Directus CMS API url. */
-  apiUrl: string;
+  apiUrl?: string;
   /** The asset as `string` or `object` with an `id` property of type `string`. */
   asset: DirectusAsset;
   /** Add `Content-Disposition` header and force browser to download file. */
@@ -52,12 +52,6 @@ export interface DirectusImageProps extends Omit<DirectusAssetProps, 'download' 
   /** A function that returns the React element to be rendered. It will receive an object with the `url` key and all the passed props. */
   render: (args: DirectusImageRenderer) => JSX.Element;
 }
-
-/**
- * Shape of the context-aware `DirectusAsset` component props.
- */
-export type DirectusAssetPropsContextualized<T extends DirectusAssetProps> = Omit<T, 'apiUrl'> &
-  Pick<Partial<T>, 'apiUrl'>;
 
 /**
  * Shape of the context provider props.
