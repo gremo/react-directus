@@ -73,7 +73,7 @@ export interface DirectusProviderProps {
 /**
  * Shape of the main context.
  */
-export interface DirectusContextTpye {
+export interface DirectusContextType {
   apiUrl: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   directus: IDirectus<any>;
