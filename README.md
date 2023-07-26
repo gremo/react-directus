@@ -134,6 +134,42 @@ export const TodoItem = ({ item }) => {
 };
 ```
 
+## 📱 React Native
+
+To make the project fully compatible with React Native and get authentication to work, you need to:
+
+- Install the "localstorage-polyfill" package and import it at the start of your code:
+
+  ```bash
+  npm install localstorage-polyfill
+  ```
+
+- Force the storage mode "LocalStorage" in your Directus instance:
+
+```jsx
+import 'localstorage-polyfill'; // Add this line before any other imports
+import { DirectusProvider } from 'react-directus'
+import { View } from 'react-native'
+
+
+export default function App({}) {
+    return (
+        <DirectusProvider
+            apiUrl='https://api.example.com'
+            options={{
+                storage: {
+                    mode: 'LocalStorage'
+                }
+            }}
+        >
+            <View />
+        </DirectusProvider>
+    )
+}
+```
+
+> In future releases, a solution using AsyncStorage or an encrypted secure storage option is planned.
+
 ## ❤️ Contributing
 
 All types of contributions are encouraged and valued. See the [Contributing](CONTRIBUTING.md) guidelines, the community looks forward to your contributions!
