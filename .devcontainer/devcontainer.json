@@ -1,5 +1,5 @@
 {
-  "image": "node:16",
+  "image": "node:18",
   "postCreateCommand": "npm update -g npm",
   "mounts": [
     {
