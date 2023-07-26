@@ -79,7 +79,7 @@ export const TodoList = () => {
 
 ## 🧩 Components (so far...)
 
-This package contains a few components for working with Direcuts files [file access](https://docs.directus.io/reference/files/). They are all configured for using the `apiUrl` specified in the provider. Hopefully, more will come in the future 🤗.
+This package contains a few components for working with Direcuts [files](https://docs.directus.io/reference/files/). They are all configured for using the `apiUrl` specified in the provider. Hopefully, more will come in the future 🤗.
 
 > **Note**: components can also be used in a "standalone" way, meaning that they are not bound to the `apiUrl` specified in the provider. In that case, they both accept an `apiUrl` prop.
 
