@@ -1,5 +1,5 @@
 {
-  "image": "node:18",
+  "image": "node:lts-hydrogen",
   "postCreateCommand": "npm update -g npm",
   "mounts": [
     {
