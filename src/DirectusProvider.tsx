@@ -2,7 +2,7 @@ import * as React from 'react';
 import {
   DirectusAssetProps,
   DirectusAssetPropsContextualized,
-  DirectusContextTpye,
+  DirectusContextType,
   DirectusImageProps,
   DirectusProviderProps,
 } from './types';
@@ -10,10 +10,10 @@ import { Directus } from '@directus/sdk';
 import { DirectusAsset } from './DirectusAsset';
 import { DirectusImage } from './DirectusImage';
 
-export const DirectusContext = React.createContext<DirectusContextTpye | null>(null);
+export const DirectusContext = React.createContext<DirectusContextType | null>(null);
 
 export const DirectusProvider = ({ apiUrl, options, children }: DirectusProviderProps): JSX.Element => {
-  const value = React.useMemo<DirectusContextTpye>(
+  const value = React.useMemo<DirectusContextType>(
     () => ({
       apiUrl: apiUrl,
       directus: new Directus(apiUrl, options),
