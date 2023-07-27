@@ -49,6 +49,15 @@ export interface DirectusImageProps extends Omit<DirectusAssetProps, 'download' 
   quality?: number;
   /** The fit of the thumbnail while always preserving the aspect ratio. */
   fit?: 'cover' | 'contain' | 'inside' | 'outside';
+  /** What file format to return the image in. */
+  format?: 'auto' | 'jpg' | 'png' | 'webp' | 'tiff';
+  /** Disable image up-scaling. */
+  withoutEnlargement?: boolean;
+  /** An array of sharp operations to apply to the image. */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  transforms?: [string, ...any[]][];
+  /** Key for Storage Asset Preset ( https://docs.directus.io/user-guide/cloud/project-settings.html#files-thumbnails ). */
+  key?: string;
   /** A function that returns the React element to be rendered. It will receive an object with the `url` key and all the passed props. */
   render: (args: DirectusImageRenderer) => JSX.Element;
 }
