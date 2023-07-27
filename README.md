@@ -134,7 +134,7 @@ Computes the URL of the given resource `asset`, rendering it using the `render` 
 - `format`: the return file format
 - `withoutEnlargement`: if `true`, the thumbnail will not be larger than the original image
 - `transforms`: an array of [Sharp transforms](https://sharp.pixelplumbing.com/api-operation) to apply to the image
-- `render`: a function (which receives an object with the `url` property) that provides the component to render
+- `render`: a function (which receives an object with the `url` property and all propertys provided to `DirectusImage`) that provides the component to render
 
 ```jsx
 import React from 'react';
