@@ -129,8 +129,11 @@ Computes the URL of the given resource `asset`, rendering it using the `render` 
 - `asset`: the asset representing the resource (`string` or `object` with an `id` property)
 - `fit`: fit of the thumbnail while always preserving the aspect ratio, can be any of the following options: `cover`, `contain`, `inside` or `outside`
 - `height`: height of the thumbnail in pixels
-- `quality`: quality of the thumbnail (`1` to `100`)
 - `width`: width of the thumbnail in pixels
+- `quality`: quality of the thumbnail (`1` to `100`)
+- `format`: the return file format
+- `withoutEnlargement`: if `true`, the thumbnail will not be larger than the original image
+- `transforms`: an array of [Sharp transforms](https://sharp.pixelplumbing.com/api-operation) to apply to the image
 - `render`: a function (which receives an object with the `url` property) that provides the component to render
 
 ```jsx
