@@ -1,17 +1,33 @@
 import * as React from 'react';
 
-import { DirectusAssetProps, DirectusContextType, DirectusImageProps, DirectusProviderProps } from './types';
-import { Directus } from '@directus/sdk';
+import { Directus, TypeMap } from '@directus/sdk';
+import {
+  DirectusAssetProps,
+  DirectusContextType,
+  DirectusContextTypeGeneric,
+  DirectusImageProps,
+  DirectusProviderProps,
+} from './types';
+
 import { DirectusAsset } from './DirectusAsset';
 import { DirectusImage } from './DirectusImage';
 
-export const DirectusContext = React.createContext<DirectusContextType | null>(null);
+// DirectusContextType with any thype that extends TypeMap
 
-export const DirectusProvider = ({ apiUrl, options, children }: DirectusProviderProps): JSX.Element => {
-  const value = React.useMemo<DirectusContextType>(
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const DirectusContext = React.createContext<DirectusContextTypeGeneric<any>>(null);
+
+// add generic type to DirectusProvider, this type will serve as directus instance type
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const DirectusProvider = <T extends TypeMap = TypeMap>({
+  apiUrl,
+  options,
+  children,
+}: DirectusProviderProps): JSX.Element => {
+  const value = React.useMemo<DirectusContextType<T>>(
     () => ({
       apiUrl: apiUrl,
-      directus: new Directus(apiUrl, options),
+      directus: new Directus<T>(apiUrl, options),
       DirectusAsset: ({ asset, render, ...props }: DirectusAssetProps) => {
         console.warn('Deprecated: Please import DirectusAsset directly from react-directus');
         return <DirectusAsset asset={asset} render={render} {...props} />;

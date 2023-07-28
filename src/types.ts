@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DirectusOptions, IDirectus } from '@directus/sdk';
+import { DirectusOptions, IDirectus, TypeMap } from '@directus/sdk';
 import { DirectusAsset } from './DirectusAsset';
 import { DirectusImage } from './DirectusImage';
 
@@ -67,12 +67,14 @@ export interface DirectusProviderProps {
 /**
  * Shape of the main context.
  */
-export interface DirectusContextType {
+export interface DirectusContextType<T extends TypeMap> {
   apiUrl: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  directus: IDirectus<any>;
+  directus: IDirectus<T>;
   /** The context-aware `DirectusAsset` component, with pre-filled props. */
   DirectusAsset: typeof DirectusAsset;
   /** The context-aware `DirectusImage` component, with pre-filled props. */
   DirectusImage: typeof DirectusImage;
 }
+
+export type DirectusContextTypeGeneric<T extends TypeMap> = DirectusContextType<T> | null;

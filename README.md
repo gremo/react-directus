@@ -33,7 +33,7 @@ Install this library along with `@directus/sdk@` (version 10 or below):
 npm install react-directus @directus/sdk@^10
 ```
 
-The `<DirectusProvider>` component makes the [Directus JavaScript SDK](https://docs.directus.io/reference/sdk/) available to any nested components that need to access it. Assuming that `<App />` component is your root component:
+The `<DirectusProvider>` component makes the [Directus JavaScript SDK](https://docs.directus.io/reference/sdk/) available to any nested components that need to access it. You can optionally pass an `options` object to the provider, which will be passed to the Directus client as the [`init`](https://docs.directus.io/reference/sdk/#reference) parameter:
 
 ```jsx
 import { App } from './App';
@@ -49,7 +49,23 @@ root.render(
 );
 ```
 
-You can optionally pass an `options` object to the provider, it will be passed to the directus client as the [`init`](https://docs.directus.io/reference/sdk/#reference) parameter.
+With **TypeScript**, you can use the optional generic collection type for Directus, as described in the [TypeScript documentation](https://docs.directus.io/reference/old-sdk.html#typescript):
+
+```tsx
+import { App } from './App';
+import { DirectusProvider } from 'react-directus';
+import { createRoot } from 'react-dom/client';
+
+import MyCollections from './types';
+
+const root = createRoot(document.getElementById('root'));
+
+root.render(
+  <DirectusProvider<MyCollections> apiUrl="https://api.example.com" options={{}}>
+    <App />
+  </DirectusProvider>
+);
+```
 
 ## ⚙️ The hook `useDirectus`
 
