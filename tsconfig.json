@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": "src",
     "target": "ES6",
     "module": "ESNext",
     "jsx": "react",
@@ -10,6 +11,10 @@
     "moduleResolution": "node",
     "esModuleInterop": true,
     "noEmit": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "paths": {
+      "@/*": ["*"],
+      "@components/*": ["components/*"],
+    }
   }
 }
