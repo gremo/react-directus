@@ -104,13 +104,25 @@ export type DirectusContextTypeGeneric<T extends TypeMap> = DirectusContextType<
 
 export interface DirectusAuthHook {
   /**
-   * @throws
+   * Login the user. If successful, the user will be stored in the context.
+   * Else, an error will be thrown.
+   * @param email - The user email.
+   * @param password - The user password.
    */
   login: (email: string, password: string) => Promise<void>;
   /**
-   * @throws
+   * Logout the user. If successful, the user will be removed from the context.
+   * Else, an error will be thrown.
    */
   logout: () => Promise<void>;
+  /**
+   * Represents the current authentication state.
+   * @default 'loading'
+   */
   authState: AuthStates;
+  /**
+   * The current authenticated user.
+   * @default null
+   */
   user: UserType | null;
 }
