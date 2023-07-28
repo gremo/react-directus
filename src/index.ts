@@ -1,4 +1,4 @@
-export { DirectusProvider, useDirectus } from '@/DirectusProvider';
+export { DirectusProvider, useDirectus } from '@base/DirectusProvider';
 
 // components
 export { DirectusAsset } from '@components/DirectusAsset';

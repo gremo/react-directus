@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { DirectusContext } from '@/DirectusProvider';
+import { DirectusContext } from '@/base/DirectusProvider';
 import { DirectusImageProps } from '@/types';
 
 export const DirectusImage = ({ apiUrl: propsApiUrl, asset, render, ...params }: DirectusImageProps): JSX.Element => {
