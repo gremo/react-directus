@@ -33,9 +33,7 @@ Install this library along with `@directus/sdk@` (version 10 or below):
 npm install react-directus @directus/sdk@^10
 ```
 
-The `<DirectusProvider>` component makes the [Directus JavaScript SDK](https://docs.directus.io/reference/sdk/) available to any nested components that need to access it. You can optionally pass an `options` object to the provider, which will be passed to the Directus client as the [`init`](https://docs.directus.io/reference/sdk/#reference) parameter.
-
-### JavaScript
+The `<DirectusProvider>` component makes the [Directus JavaScript SDK](https://docs.directus.io/reference/sdk/) available to any nested components that need to access it. You can optionally pass an `options` object to the provider, which will be passed to the Directus client as the [`init`](https://docs.directus.io/reference/sdk/#reference) parameter:
 
 ```jsx
 import { App } from './App';
@@ -51,9 +49,7 @@ root.render(
 );
 ```
 
-### TypeScript
-
-> **Note**: You can use the optional generic collection type for Directus, as described in the [Directus documentation](https://docs.directus.io/reference/old-sdk.html#typescript). This allows you to provide a more specific type when working with collections in TypeScript.
+With **TypeScript**, you can use the optional generic collection type for Directus, as described in the [TypeScript documentation](https://docs.directus.io/reference/old-sdk.html#typescript):
 
 ```tsx
 import { App } from './App';
