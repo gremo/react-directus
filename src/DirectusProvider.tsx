@@ -18,7 +18,8 @@ import { DirectusImage } from './DirectusImage';
 export const DirectusContext = React.createContext<DirectusContextTypeGeneric<any>>(null);
 
 // add generic type to DirectusProvider, this type will serve as directus instance type
-export const DirectusProvider = <T extends TypeMap>({
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const DirectusProvider = <T extends TypeMap = TypeMap>({
   apiUrl,
   options,
   children,
