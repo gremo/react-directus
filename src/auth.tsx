@@ -49,7 +49,7 @@ export const useAuth = (): DirectusAuthHook => {
     _setDirecctusUser: setDirectusUser,
   } = directusContext;
 
-  const login = React.useCallback(
+  const login = React.useCallback<DirectusAuthHook['login']>(
     async (email: string, password: string) => {
       await directus.auth.login({
         email,
@@ -71,7 +71,7 @@ export const useAuth = (): DirectusAuthHook => {
     [directus]
   );
 
-  const logout = React.useCallback(async () => {
+  const logout = React.useCallback<DirectusAuthHook['logout']>(async () => {
     try {
       await directus.auth.logout();
     } finally {
