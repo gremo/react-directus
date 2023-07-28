@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { DirectusOptions, IDirectus, TypeMap } from '@directus/sdk';
-import { DirectusAsset } from './DirectusAsset';
-import { DirectusImage } from './DirectusImage';
+import { DirectusAsset } from '@components/DirectusAsset';
+import { DirectusImage } from '@components/DirectusImage';
 
 /**
  * Shape of a generic asset.
