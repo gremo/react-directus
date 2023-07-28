@@ -63,7 +63,7 @@ export const DirectusImage = ({
   }, [directusContext, asset, propsApiUrl, width, height, quality, key, fit, format, withoutEnlargement, transforms]);
 
   return render({
-    apiUrl: propsApiUrl || apiUrl,
+    apiUrl,
     asset,
     width,
     height,
