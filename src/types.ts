@@ -83,18 +83,24 @@ export interface DirectusContextType<T extends TypeMap> {
   /** The context-aware `DirectusImage` component, with pre-filled props. */
   DirectusImage: typeof DirectusImage;
   /**
+   * Please use the data provided by the `useDirectusAuth` hook instead.
+   * @default 'loading'
    * @internal
    */
   _authState: AuthStates;
   /**
+   * Please use the functions provided by the `useDirectusAuth` hook instead.
    * @internal
    */
   _setAuthState: React.Dispatch<React.SetStateAction<AuthStates>>;
   /**
+   * Please use the data provided by the `useDirectusAuth` hook instead.
+   * @default null
    * @internal
    */
   _directusUser: UserType | null;
   /**
+   * Please use the functions provided by the `useDirectusAuth` hook instead.
    * @internal
    */
   _setDirecctusUser: React.Dispatch<React.SetStateAction<UserType | null>>;
@@ -108,11 +114,13 @@ export interface DirectusAuthHook {
    * Else, an error will be thrown.
    * @param email - The user email.
    * @param password - The user password.
+   * @throws {Error} - If the login fails.
    */
   login: (email: string, password: string) => Promise<void>;
   /**
    * Logout the user. If successful, the user will be removed from the context.
    * Else, an error will be thrown.
+   * @throws {Error} - If the logout fails.
    */
   logout: () => Promise<void>;
   /**
