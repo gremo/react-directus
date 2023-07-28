@@ -5,7 +5,6 @@
   "testMatch": ["<rootDir>/src/**/*(*.)@(spec|test).[tj]s?(x)"],
   "moduleNameMapper": {
     "^@/(.*)$": "<rootDir>/src/$1",
-    "^@components/(.*)$": "<rootDir>/src/components/$1",
-    "^@base/(.*)$": "<rootDir>/src/base/$1"
+    "^@components/(.*)$": "<rootDir>/src/components/$1"
   }
 }

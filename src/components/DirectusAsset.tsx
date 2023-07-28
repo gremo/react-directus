@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { DirectusAssetProps } from '@/types';
-import { DirectusContext } from '@/base/DirectusProvider';
+import { DirectusContext } from '@/DirectusProvider';
 
 export const DirectusAsset = ({
   apiUrl: propsApiUrl,
