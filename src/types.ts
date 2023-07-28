@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DirectusOptions, IDirectus, TypeMap } from '@directus/sdk';
+import { DirectusOptions, IDirectus, TypeMap, UserType } from '@directus/sdk';
 import { DirectusAsset } from '@components/DirectusAsset';
 import { DirectusImage } from '@components/DirectusImage';
 
@@ -61,8 +61,15 @@ export interface DirectusProviderProps {
   apiUrl: string;
   /** A set of options to pass to the Directus client. */
   options?: DirectusOptions;
+  /**
+   * If `true`, the provider will try to login the user automatically on mount.
+   * @default false
+   */
+  autoLogin?: boolean;
   children: React.ReactNode;
 }
+
+export type AuthStates = 'loading' | 'authenticated' | 'unauthenticated';
 
 /**
  * Shape of the main context.
@@ -75,6 +82,35 @@ export interface DirectusContextType<T extends TypeMap> {
   DirectusAsset: typeof DirectusAsset;
   /** The context-aware `DirectusImage` component, with pre-filled props. */
   DirectusImage: typeof DirectusImage;
+  /**
+   * @internal
+   */
+  _authState: AuthStates;
+  /**
+   * @internal
+   */
+  _setAuthState: React.Dispatch<React.SetStateAction<AuthStates>>;
+  /**
+   * @internal
+   */
+  _directusUser: UserType | null;
+  /**
+   * @internal
+   */
+  _setDirecctusUser: React.Dispatch<React.SetStateAction<UserType | null>>;
 }
 
 export type DirectusContextTypeGeneric<T extends TypeMap> = DirectusContextType<T> | null;
+
+export interface DirectusAuthHook {
+  /**
+   * @throws
+   */
+  login: (email: string, password: string) => Promise<void>;
+  /**
+   * @throws
+   */
+  logout: () => Promise<void>;
+  authState: AuthStates;
+  user: UserType | null;
+}
