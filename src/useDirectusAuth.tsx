@@ -7,10 +7,10 @@ import { UserType } from '@directus/sdk';
  * A hook to access the Directus authentication state and methods.
  * @example
  * ```tsx
- * import { useAuth } from 'react-directus';
+ * import { useDirectusAuth } from 'react-directus';
  *
  * const Login = () => {
- *   const { login } = useAuth();
+ *   const { login } = useDirectusAuth();
  *
  *   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
  *     e.preventDefault();
@@ -34,11 +34,11 @@ import { UserType } from '@directus/sdk';
  * ```
  */
 
-export const useAuth = (): DirectusAuthHook => {
+export const useDirectusAuth = (): DirectusAuthHook => {
   const directusContext = React.useContext(DirectusContext);
 
   if (!directusContext) {
-    throw new Error('useAuth has to be used within the DirectusProvider');
+    throw new Error('useDirectusAuth has to be used within the DirectusProvider');
   }
 
   const {
