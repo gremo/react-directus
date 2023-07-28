@@ -59,9 +59,7 @@ export const DirectusImage = ({
       }
     }
 
-    const tempUrl = `${apiUrl}/assets/${assetId}?${params.toString()}`;
-
-    return tempUrl;
+    return `${apiUrl}/assets/${assetId}?${params.toString()}`;
   }, [directusContext, asset, propsApiUrl, width, height, quality, key, fit, format, withoutEnlargement, transforms]);
 
   return render({
