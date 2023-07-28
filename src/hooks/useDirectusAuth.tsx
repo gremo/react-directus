@@ -1,5 +1,5 @@
-import { DirectusAuthHook } from './types';
-import { DirectusContext } from './DirectusProvider';
+import { DirectusAuthHook } from '../types';
+import { DirectusContext } from '../DirectusProvider';
 import React from 'react';
 import { UserType } from '@directus/sdk';
 
