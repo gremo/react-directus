@@ -4,6 +4,7 @@
   "testEnvironment": "jsdom",
   "testMatch": ["<rootDir>/src/**/*(*.)@(spec|test).[tj]s?(x)"],
   "moduleNameMapper": {
-    "^@/(.*)$": "<rootDir>/src/$1"
+    "^@/(.*)$": "<rootDir>/src/$1",
+    "^@components/(.*)$": "<rootDir>/src/components/$1"
   }
 }
