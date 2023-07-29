@@ -10,7 +10,7 @@ export const DirectusImage = ({
   presetKey,
   width,
   height,
-  quality = 75,
+  quality,
   fit,
   format,
   withoutEnlargement,
