@@ -75,19 +75,19 @@ export interface DirectusImageCustomProps {
 }
 
 /**
+ * Shape of the `DirectusImage` component props, with dynamic props.
+ */
+export type DirectusImagePropsDynamic = {
+  presetKey?: never;
+} & DirectusImageCustomProps &
+  DirectusImagePropsBase;
+/**
  * Shape of the `DirectusImage` component props, with `presetKey` prop.
  */
-export interface DirectusImagePropsKeyed extends DirectusImagePropsBase {
+export type DirectusImagePropsKeyed = {
   /** Key for Storage Asset Preset ( https://docs.directus.io/user-guide/cloud/project-settings.html#files-thumbnails ). */
   presetKey: string;
-  width?: never;
-  height?: never;
-  quality?: never;
-  fit?: never;
-  format?: never;
-  withoutEnlargement?: never;
-  transforms?: never;
-}
+} & { [p in keyof DirectusImageCustomProps]: never } & DirectusImagePropsBase;
 
 /**
  * Shape of the `DirectusImage` component props.
