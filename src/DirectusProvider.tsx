@@ -7,10 +7,10 @@ import {
   DirectusContextTypeGeneric,
   DirectusImageProps,
   DirectusProviderProps,
-} from './types';
+} from '@/types';
 
-import { DirectusAsset } from './DirectusAsset';
-import { DirectusImage } from './DirectusImage';
+import { DirectusAsset } from '@components/DirectusAsset';
+import { DirectusImage } from '@components/DirectusImage';
 
 // DirectusContextType with any thype that extends TypeMap
 

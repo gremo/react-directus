@@ -1,5 +1,5 @@
-import { DirectusAsset } from './DirectusAsset';
-import { DirectusAssetRenderer } from './types';
+import { DirectusAsset } from '@components/DirectusAsset';
+import { DirectusAssetRenderer } from '@/types';
 import React from 'react';
 import { render } from '@testing-library/react';
 

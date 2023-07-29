@@ -1,5 +1,5 @@
-import { DirectusImageProps, DirectusImageRenderer } from './types';
-import { DirectusImage } from './DirectusImage';
+import { DirectusImageProps, DirectusImageRenderer } from '@/types';
+import { DirectusImage } from '@components/DirectusImage';
 import React from 'react';
 import { render } from '@testing-library/react';
 

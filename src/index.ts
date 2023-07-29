@@ -1,3 +1,3 @@
-export { DirectusAsset } from './DirectusAsset';
-export { DirectusImage } from './DirectusImage';
-export { DirectusProvider, useDirectus } from './DirectusProvider';
+export { DirectusProvider, useDirectus } from '@/DirectusProvider';
+export { DirectusAsset } from '@components/DirectusAsset';
+export { DirectusImage } from '@components/DirectusImage';
