@@ -75,6 +75,7 @@ export interface DirectusImageCustomProps {
 }
 
 export interface DirectusImageProps extends Omit<DirectusAssetProps, 'download' | 'render'> {
+  /** Key for Storage Asset Preset ( https://docs.directus.io/user-guide/cloud/project-settings.html#files-thumbnails ). */
   key?: string;
   /** A function that returns the React element to be rendered. It will receive an object with the `url` key and all the passed props. */
   render: (args: DirectusImageRenderer) => JSX.Element;
