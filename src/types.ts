@@ -56,12 +56,15 @@ export interface DirectusImageProps extends Omit<DirectusAssetProps, 'download' 
   /** An array of sharp operations to apply to the image. */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   transforms?: [string, ...any[]][];
-  /** Key for Storage Asset Preset ( https://docs.directus.io/user-guide/cloud/project-settings.html#files-thumbnails ). */
-  key?: string;
   /** A function that returns the React element to be rendered. It will receive an object with the `url` key and all the passed props. */
   render: (args: DirectusImageRenderer) => JSX.Element;
 }
 
+export interface DirectusImageProps extends Omit<DirectusAssetProps, 'download' | 'render'> {
+  key?: string;
+  /** A function that returns the React element to be rendered. It will receive an object with the `url` key and all the passed props. */
+  render: (args: DirectusImageRenderer) => JSX.Element;
+}
 /**
  * Shape of the context provider props.
  */
