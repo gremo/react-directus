@@ -127,6 +127,12 @@ export const TodoItem = ({ item }) => {
 Computes the URL of the given resource `asset`, rendering it using the `render` prop:
 
 - `asset`: the asset representing the resource (`string` or `object` with an `id` property)
+- `render`: a function (which receives an object with the `url` property and all propertys provided to `DirectusImage`) that provides the component to render
+
+- `presetKey`: the key of the [Storage Asset Preset](https://docs.directus.io/user-guide/cloud/project-settings.html#files-thumbnails), a shortcut for the below parameters
+
+> **Note**: the following parameters are ignored if `presetKey` is provided
+
 - `fit`: fit of the thumbnail while always preserving the aspect ratio, can be any of the following options: `cover`, `contain`, `inside` or `outside`
 - `height`: height of the thumbnail in pixels
 - `width`: width of the thumbnail in pixels
@@ -134,7 +140,6 @@ Computes the URL of the given resource `asset`, rendering it using the `render` 
 - `format`: the return file format
 - `withoutEnlargement`: if `true`, the thumbnail will not be larger than the original image
 - `transforms`: an array of [Sharp transforms](https://sharp.pixelplumbing.com/api-operation) to apply to the image
-- `render`: a function (which receives an object with the `url` property and all propertys provided to `DirectusImage`) that provides the component to render
 
 ```jsx
 import React from 'react';
