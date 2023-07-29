@@ -56,11 +56,7 @@ export type DirectusImagePropsBase = Omit<DirectusAssetProps, 'download' | 'rend
   render: (args: DirectusImageRenderer) => JSX.Element;
 };
 
-/**
- * Shape of the `DirectusImage` component props, with dynamic props.
- */
-export interface DirectusImagePropsDynamic extends DirectusImagePropsBase {
-  presetKey?: never;
+export interface DirectusImageCustomProps {
   /** The width of the thumbnail in pixels. */
   width?: number;
   /** The height of the thumbnail in pixels. */
@@ -79,19 +75,19 @@ export interface DirectusImagePropsDynamic extends DirectusImagePropsBase {
 }
 
 /**
+ * Shape of the `DirectusImage` component props, with dynamic props.
+ */
+export type DirectusImagePropsDynamic = {
+  presetKey?: never;
+} & DirectusImageCustomProps &
+  DirectusImagePropsBase;
+/**
  * Shape of the `DirectusImage` component props, with `presetKey` prop.
  */
-export interface DirectusImagePropsKeyed extends DirectusImagePropsBase {
+export type DirectusImagePropsKeyed = {
   /** Key for Storage Asset Preset ( https://docs.directus.io/user-guide/cloud/project-settings.html#files-thumbnails ). */
   presetKey: string;
-  width?: never;
-  height?: never;
-  quality?: never;
-  fit?: never;
-  format?: never;
-  withoutEnlargement?: never;
-  transforms?: never;
-}
+} & { [p in keyof DirectusImageCustomProps]: never } & DirectusImagePropsBase;
 
 /**
  * Shape of the `DirectusImage` component props.
