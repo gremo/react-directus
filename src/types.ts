@@ -81,6 +81,7 @@ export type DirectusImagePropsDynamic = {
   presetKey?: never;
 } & DirectusImageCustomProps &
   DirectusImagePropsBase;
+
 /**
  * Shape of the `DirectusImage` component props, with `presetKey` prop.
  */
