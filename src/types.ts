@@ -31,16 +31,36 @@ export interface DirectusAssetProps {
 }
 
 /**
- * Shape of the `DirectusImage` component `render` prop.
+ * Shape of the `DirectusImage` component `render` prop, with `presetKey` prop.
  */
-export type DirectusImageRenderer = Omit<DirectusImageProps, 'render'> & {
+export type DirectusImageRendererKeyed = Omit<DirectusImagePropsKeyed, 'render'> & {
   url?: string;
 };
 
 /**
- * Shape of `DirectusImage` component props.
+ * Shape of the `DirectusImage` component `render` prop, with dynamic props.
  */
-export interface DirectusImageProps extends Omit<DirectusAssetProps, 'download' | 'render'> {
+export type DirectusImageRendererDynamic = Omit<DirectusImagePropsDynamic, 'render'> & {
+  url?: string;
+};
+
+/**
+ * Shape of the `DirectusImage` component `render` prop.
+ */
+export type DirectusImageRenderer = DirectusImageRendererKeyed | DirectusImageRendererDynamic;
+
+/**
+ * Shape of a generic image component props.
+ */
+export type DirectusImagePropsBase = Omit<DirectusAssetProps, 'download' | 'render'> & {
+  render: (args: DirectusImageRenderer) => JSX.Element;
+};
+
+/**
+ * Shape of the `DirectusImage` component props, with dynamic props.
+ */
+export interface DirectusImagePropsDynamic extends DirectusImagePropsBase {
+  presetKey?: never;
   /** The width of the thumbnail in pixels. */
   width?: number;
   /** The height of the thumbnail in pixels. */
@@ -56,16 +76,28 @@ export interface DirectusImageProps extends Omit<DirectusAssetProps, 'download' 
   /** An array of sharp operations to apply to the image. */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   transforms?: [string, ...any[]][];
-  /** A function that returns the React element to be rendered. It will receive an object with the `url` key and all the passed props. */
-  render: (args: DirectusImageRenderer) => JSX.Element;
 }
 
-export interface DirectusImageProps extends Omit<DirectusAssetProps, 'download' | 'render'> {
+/**
+ * Shape of the `DirectusImage` component props, with `presetKey` prop.
+ */
+export interface DirectusImagePropsKeyed extends DirectusImagePropsBase {
   /** Key for Storage Asset Preset ( https://docs.directus.io/user-guide/cloud/project-settings.html#files-thumbnails ). */
-  key?: string;
-  /** A function that returns the React element to be rendered. It will receive an object with the `url` key and all the passed props. */
-  render: (args: DirectusImageRenderer) => JSX.Element;
+  presetKey: string;
+  width?: never;
+  height?: never;
+  quality?: never;
+  fit?: never;
+  format?: never;
+  withoutEnlargement?: never;
+  transforms?: never;
 }
+
+/**
+ * Shape of the `DirectusImage` component props.
+ */
+export type DirectusImageProps = DirectusImagePropsDynamic | DirectusImagePropsKeyed;
+
 /**
  * Shape of the context provider props.
  */

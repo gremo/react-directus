@@ -6,15 +6,15 @@ import { DirectusImageProps } from '@/types';
 export const DirectusImage = ({
   apiUrl: propsApiUrl,
   asset,
+  render,
+  presetKey,
   width,
   height,
   quality = 75,
-  key,
   fit,
   format,
   withoutEnlargement,
   transforms,
-  render,
 }: DirectusImageProps): JSX.Element => {
   const directusContext = React.useContext(DirectusContext);
 
@@ -33,8 +33,9 @@ export const DirectusImage = ({
 
     const params = new URLSearchParams();
 
-    if (key) {
-      params.append('key', key);
+    // test if props is DirectusImagePropsKeyed or DirectusImagePropsDynamic
+    if ('string' === typeof presetKey) {
+      params.append('key', presetKey);
     } else {
       if (width) {
         params.append('width', width.toString());
@@ -60,19 +61,40 @@ export const DirectusImage = ({
     }
 
     return `${apiUrl}/assets/${assetId}?${params.toString()}`;
-  }, [directusContext, asset, propsApiUrl, width, height, quality, key, fit, format, withoutEnlargement, transforms]);
-
-  return render({
-    apiUrl,
+  }, [
+    directusContext,
     asset,
+    propsApiUrl,
+    presetKey,
     width,
     height,
     quality,
-    key,
     fit,
     format,
     withoutEnlargement,
     transforms,
+  ]);
+
+  // test if props is DirectusImagePropsKeyed or DirectusImagePropsDynamic
+  if ('string' === typeof presetKey) {
+    return render({
+      apiUrl,
+      asset,
+      url: imageUrl,
+      presetKey,
+    });
+  }
+
+  return render({
+    apiUrl,
+    asset,
     url: imageUrl,
+    width,
+    height,
+    quality,
+    fit,
+    format,
+    withoutEnlargement,
+    transforms,
   });
 };
