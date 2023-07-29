@@ -129,7 +129,7 @@ Computes the URL of the given resource `asset`, rendering it using the `render` 
 - `asset`: the asset representing the resource (`string` or `object` with an `id` property)
 - `render`: a function (which receives an object with the `url` property and all propertys provided to `DirectusImage`) that provides the component to render
 
-- `presetKey`: the key of the [Storage Asset Preset](https://docs.directus.io/user-guide/cloud/project-settings.html#files-thumbnails), a shortcut for the below parameters
+- `presetKey`: the key of the [Storage Asset Preset](https://docs.directus.io/user-guide/cloud/project-settings.html#files-storage), a shortcut for the below parameters
 
 > **Note**: the following parameters are ignored if `presetKey` is provided
 
