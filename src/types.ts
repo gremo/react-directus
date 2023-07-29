@@ -74,6 +74,11 @@ export interface DirectusImageCustomProps {
   transforms?: [string, ...any[]][];
 }
 
+export interface DirectusImageProps extends Omit<DirectusAssetProps, 'download' | 'render'> {
+  key?: string;
+  /** A function that returns the React element to be rendered. It will receive an object with the `url` key and all the passed props. */
+  render: (args: DirectusImageRenderer) => JSX.Element;
+}
 /**
  * Shape of the `DirectusImage` component props, with dynamic props.
  */
