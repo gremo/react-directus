@@ -34,8 +34,8 @@ export const DirectusProvider = <T extends TypeMap = TypeMap>({
 
   const value = React.useMemo<DirectusContextType<T>>(
     () => ({
-      apiUrl: apiUrl,
-      directus: directus,
+      apiUrl,
+      directus,
       DirectusAsset: ({ asset, render, ...props }: DirectusAssetProps) => {
         console.warn('Deprecated: Please import DirectusAsset directly from react-directus');
         return <DirectusAsset asset={asset} render={render} {...props} />;
