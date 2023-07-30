@@ -1,5 +1,4 @@
-import * as React from 'react';
-
+import { createContext, useContext, useMemo, useState } from 'react';
 import {
   AuthStates,
   DirectusAssetProps,
@@ -17,7 +16,7 @@ import { DirectusImage } from '@components/DirectusImage';
 // DirectusContextType with any thype that extends TypeMap
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const DirectusContext = React.createContext<DirectusContextTypeGeneric<any>>(null);
+export const DirectusContext = createContext<DirectusContextTypeGeneric<any>>(null);
 
 // add generic type to DirectusProvider, this type will serve as directus instance type
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -27,12 +26,12 @@ export const DirectusProvider = <T extends TypeMap = TypeMap>({
   autoLogin,
   children,
 }: DirectusProviderProps): JSX.Element => {
-  const [user, setUser] = React.useState<UserType | null>(null);
-  const [authState, setAuthState] = React.useState<AuthStates>('loading');
+  const [user, setUser] = useState<UserType | null>(null);
+  const [authState, setAuthState] = useState<AuthStates>('loading');
 
-  const directus = React.useMemo(() => new Directus<T>(apiUrl, options), [apiUrl, options]);
+  const directus = useMemo(() => new Directus<T>(apiUrl, options), [apiUrl, options]);
 
-  const value = React.useMemo<DirectusContextType<T>>(
+  const value = useMemo<DirectusContextType<T>>(
     () => ({
       apiUrl,
       directus,
@@ -88,7 +87,7 @@ export const DirectusProvider = <T extends TypeMap = TypeMap>({
 };
 
 export const useDirectus = () => {
-  const directusContext = React.useContext(DirectusContext);
+  const directusContext = useContext(DirectusContext);
 
   if (!directusContext) {
     throw new Error('useDirectus has to be used within the DirectusProvider');

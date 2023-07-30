@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { DirectusOptions, IDirectus, TypeMap, UserType } from '@directus/sdk';
 import { DirectusAsset } from '@components/DirectusAsset';
 import { DirectusImage } from '@components/DirectusImage';

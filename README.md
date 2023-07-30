@@ -74,7 +74,7 @@ root.render(
 After adding the provider, you can access the configured client anywhere in the app, using the `useDirectus` hook:
 
 ```jsx
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDirectus } from 'react-directus'
 
 export const TodoList = () => {
@@ -147,7 +147,6 @@ Computes the URL of the given resource `asset`, rendering it using the `render` 
 - `render`: a function (which receives an object with the `url` property) that provides the component to render
 
 ```jsx
-import React from 'react';
 import { DirectusAsset } from 'react-directus';
 
 export const TodoItem = ({ item }) => {
@@ -180,7 +179,6 @@ Computes the URL of the given resource `asset`, rendering it using the `render` 
 - `transforms`: an array of [Sharp transforms](https://sharp.pixelplumbing.com/api-operation) to apply to the image
 
 ```jsx
-import React from 'react';
 import { DirectusImage } from 'react-directus';
 
 export const TodoItem = ({ item }) => {
