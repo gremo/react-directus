@@ -5,7 +5,7 @@ import { DirectusImageProps } from '@/types';
 
 export const DirectusImage = ({
   apiUrl: propsApiUrl,
-  accsessToken: propsAccsessToken,
+  accessToken: propsAccessToken,
   asset,
   render,
   presetKey,
@@ -36,8 +36,8 @@ export const DirectusImage = ({
 
     let accessToken: string | null = null;
 
-    if (propsAccsessToken) {
-      accessToken = propsAccsessToken;
+    if (propsAccessToken) {
+      accessToken = propsAccessToken;
     } else if (directus) {
       accessToken = await directus.auth.token;
     }

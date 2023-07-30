@@ -5,7 +5,7 @@ import { DirectusContext } from '@/DirectusProvider';
 
 export const DirectusAsset = ({
   apiUrl: propsApiUrl,
-  accsessToken: propsAccsessToken,
+  accessToken: propsAccessToken,
   asset,
   download = false,
   render,
@@ -30,8 +30,8 @@ export const DirectusAsset = ({
 
     let accessToken: string | null = null;
 
-    if (propsAccsessToken) {
-      accessToken = propsAccsessToken;
+    if (propsAccessToken) {
+      accessToken = propsAccessToken;
     } else if (directus) {
       accessToken = await directus.auth.token;
     }
@@ -49,7 +49,7 @@ export const DirectusAsset = ({
 
   React.useEffect(() => {
     generateUrl();
-  }, [directusContext, asset, propsApiUrl, propsAccsessToken, download]);
+  }, [directusContext, asset, propsApiUrl, propsAccessToken, download]);
 
   return render({
     apiUrl: apiUrl || propsApiUrl,
