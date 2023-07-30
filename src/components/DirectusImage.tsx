@@ -5,6 +5,7 @@ import { DirectusImageProps } from '@/types';
 
 export const DirectusImage = ({
   apiUrl: propsApiUrl,
+  accsessToken: propsAccsessToken,
   asset,
   render,
   presetKey,
@@ -17,21 +18,35 @@ export const DirectusImage = ({
   transforms,
 }: DirectusImageProps): JSX.Element => {
   const directusContext = React.useContext(DirectusContext);
+  const [imageUrl, setImageUrl] = React.useState<string | undefined>();
 
   if (!directusContext && !propsApiUrl) {
     throw new Error('DirectusImage requires either a DirectusProvider or an apiUrl prop');
   }
 
-  const apiUrl = propsApiUrl || directusContext?.apiUrl;
+  const { directus, apiUrl: contextApiUrl } = directusContext || {};
 
-  const imageUrl = React.useMemo((): string | undefined => {
+  const apiUrl = propsApiUrl || contextApiUrl;
+  const generateImageUrl = async () => {
     const assetId = asset && 'object' === typeof asset ? asset.id : asset;
 
     if (!assetId) {
-      return undefined;
+      throw new Error('DirectusImage requires an asset id');
+    }
+
+    let accessToken: string | null = null;
+
+    if (propsAccsessToken) {
+      accessToken = propsAccsessToken;
+    } else if (directus) {
+      accessToken = await directus.auth.token;
     }
 
     const params = new URLSearchParams();
+
+    if (accessToken) {
+      params.append('access_token', accessToken);
+    }
 
     // test if props is DirectusImagePropsKeyed or DirectusImagePropsDynamic
     if ('string' === typeof presetKey) {
@@ -60,7 +75,11 @@ export const DirectusImage = ({
       }
     }
 
-    return `${apiUrl}/assets/${assetId}?${params.toString()}`;
+    setImageUrl(`${apiUrl}/assets/${assetId}?${params.toString()}`);
+  };
+
+  React.useEffect(() => {
+    generateImageUrl();
   }, [
     directusContext,
     asset,

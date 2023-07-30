@@ -29,7 +29,7 @@ describe('Component', () => {
   ])('pass the props to the renderer', props => {
     render(<DirectusAsset {...props} render={dummyRenderer} />);
 
-    expect(dummyRenderer.mock.calls[0][0]).toMatchObject(props);
+    expect(dummyRenderer.mock.calls[1][0]).toMatchObject(props);
   });
 
   it.each([
@@ -51,6 +51,6 @@ describe('Component', () => {
   ])('build and pass the url to the renderer', (props, expectedUrl) => {
     render(<DirectusAsset {...props} render={dummyRenderer} />);
 
-    expect(dummyRenderer.mock.calls[0][0].url).toBe(expectedUrl);
+    expect(dummyRenderer.mock.calls[1][0].url).toBe(expectedUrl);
   });
 });
