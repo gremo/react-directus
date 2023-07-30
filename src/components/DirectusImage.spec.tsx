@@ -34,6 +34,13 @@ describe('Component', () => {
         fit: 'cover',
       },
     ],
+    [
+      {
+        apiUrl: 'http://example.com',
+        asset: '11263b49-13b9-4ed8-ba39-01fe7cbeb284',
+        presetKey: 'true',
+      },
+    ],
   ])('pass the props to the renderer', props => {
     render(<DirectusImage {...(props as DirectusImageProps)} render={dummyRenderer} />);
 
