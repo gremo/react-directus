@@ -49,9 +49,9 @@ root.render(
 );
 ```
 
-With **TypeScript**, you can use the optional generic collection type for Directus, as described in the [TypeScript documentation](https://docs.directus.io/reference/old-sdk.html#typescript):
+With **TypeScript**, you can use the optional generic collection type for Directus, as described in the [Directus TypeScript documentation](https://docs.directus.io/reference/old-sdk.html#typescript):
 
-```tsx
+```jsx
 import { App } from './App';
 import { DirectusProvider } from 'react-directus';
 import { createRoot } from 'react-dom/client';
