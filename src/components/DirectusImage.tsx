@@ -1,7 +1,6 @@
-import * as React from 'react';
-
 import { DirectusContext } from '@/DirectusProvider';
 import { DirectusImageProps } from '@/types';
+import { useContext,useState } from 'react';
 
 export const DirectusImage = ({
   apiUrl: propsApiUrl,
@@ -17,8 +16,8 @@ export const DirectusImage = ({
   withoutEnlargement,
   transforms,
 }: DirectusImageProps): JSX.Element => {
-  const directusContext = React.useContext(DirectusContext);
-  const [imageUrl, setImageUrl] = React.useState<string | undefined>();
+  const directusContext = useContext(DirectusContext);
+  const [imageUrl, setImageUrl] = useState<string | undefined>();
 
   if (!directusContext && !propsApiUrl) {
     throw new Error('DirectusImage requires either a DirectusProvider or an apiUrl prop');
