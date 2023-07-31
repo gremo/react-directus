@@ -1,6 +1,7 @@
 import { DirectusOptions, IDirectus, TypeMap, UserType } from '@directus/sdk';
 import { DirectusAsset } from '@components/DirectusAsset';
 import { DirectusImage } from '@components/DirectusImage';
+import { ReactNode } from 'react';
 
 /**
  * Shape of a generic asset.
@@ -109,7 +110,7 @@ export interface DirectusProviderProps {
    * @default false
    */
   autoLogin?: boolean;
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 export type AuthStates = 'loading' | 'authenticated' | 'unauthenticated';
