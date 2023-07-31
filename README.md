@@ -102,7 +102,7 @@ The `useDirectusAuth` hook provides a few methods for working with the [Directus
 - `login` - a function that accepts an email and password and returns a promise that resolves to the user object if the login is successful or rejects with an error otherwise
 - `logout` - a function that logs out the current user
 - `user` - the current user object
-- `authState` - the current authentication state, one of `loading` (the initial state), `logged-in` or `logged-out`.
+- `authState` - the current authentication state, one of `loading` (the initial state), `logged-in` or `logged-out`
 
 ```jsx
 import { useDirectusAuth } from 'react-directus';
