@@ -99,10 +99,10 @@ export const TodoList = () => {
 
 The `useDirectusAuth` hook provides a few methods for working with the [Directus Authentication API](https://docs.directus.io/reference/old-sdk.html#authentication):
 
-* `login` - a function that accepts an email and password and returns a promise that resolves to the user object if the login is successful or rejects with an error otherwise.
-* `logout` - a function that logs out the current user.
-* `user` - the current user object
-* `authState` - the current authentication state, one of `loading` (the initial state), `logged-in` or `logged-out`.
+- `login` - a function that accepts an email and password and returns a promise that resolves to the user object if the login is successful or rejects with an error otherwise
+- `logout` - a function that logs out the current user
+- `user` - the current user object
+- `authState` - the current authentication state, one of `loading` (the initial state), `logged-in` or `logged-out`.
 
 ```jsx
 import { useDirectusAuth } from 'react-directus';
@@ -142,9 +142,9 @@ This package contains a few components for working with Direcuts [files](https:/
 
 Computes the URL of the given resource `asset`, rendering it using the `render` prop:
 
-* `asset`: the asset representing the resource (`string` or `object` with an `id` property)
-* `download`: force browser to download the asset (force the `Content-Disposition` header)
-* `render`: a function (which receives an object with the `url` property) that provides the component to render
+- `asset`: the asset representing the resource (`string` or `object` with an `id` property)
+- `download`: force browser to download the asset (force the `Content-Disposition` header)
+- `render`: a function (which receives an object with the `url` property) that provides the component to render
 
 ```jsx
 import React from 'react';
@@ -165,12 +165,12 @@ export const TodoItem = ({ item }) => {
 
 Computes the URL of the given resource `asset`, rendering it using the `render` prop:
 
-* `asset`: the asset representing the resource (`string` or `object` with an `id` property)
-* `fit`: fit of the thumbnail while always preserving the aspect ratio, can be any of the following options: `cover`, `contain`, `inside` or `outside`
-* `height`: height of the thumbnail in pixels
-* `quality`: quality of the thumbnail (`1` to `100`)
-* `width`: width of the thumbnail in pixels
-* `render`: a function (which receives an object with the `url` property) that provides the component to render
+- `asset`: the asset representing the resource (`string` or `object` with an `id` property)
+- `fit`: fit of the thumbnail while always preserving the aspect ratio, can be any of the following options: `cover`, `contain`, `inside` or `outside`
+- `height`: height of the thumbnail in pixels
+- `quality`: quality of the thumbnail (`1` to `100`)
+- `width`: width of the thumbnail in pixels
+- `render`: a function (which receives an object with the `url` property) that provides the component to render
 
 ```jsx
 import React from 'react';
