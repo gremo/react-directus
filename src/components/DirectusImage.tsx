@@ -1,7 +1,6 @@
-import { useContext, useMemo } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { DirectusContext } from '@/DirectusProvider';
 import { DirectusImageProps } from '@/types';
-import { useContext,useState } from 'react';
 
 export const DirectusImage = ({
   apiUrl: propsApiUrl,
@@ -78,7 +77,7 @@ export const DirectusImage = ({
     setImageUrl(`${apiUrl}/assets/${assetId}?${params.toString()}`);
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     generateImageUrl();
   }, [
     directusContext,

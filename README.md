@@ -106,11 +106,12 @@ The `useDirectusAuth` hook provides a few methods for working with the [Directus
 
 ```jsx
 import { useDirectusAuth } from 'react-directus';
+import { FormEvent } from 'react';
 
 const Login = () => {
   const { login } = useDirectusAuth();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const { email, password } = e.currentTarget.elements;

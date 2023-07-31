@@ -1,6 +1,6 @@
+import { useContext, useEffect, useState } from 'react';
 import { DirectusAssetProps } from '@/types';
 import { DirectusContext } from '@/DirectusProvider';
-import { useContext } from 'react';
 
 export const DirectusAsset = ({
   apiUrl: propsApiUrl,
@@ -10,8 +10,7 @@ export const DirectusAsset = ({
   render,
 }: DirectusAssetProps): JSX.Element => {
   const directusContext = useContext(DirectusContext);
-    const [assetUrl, setAssetUrl] = useState<string | undefined>();
-
+  const [assetUrl, setAssetUrl] = useState<string | undefined>();
 
   if (!directusContext && !propsApiUrl) {
     throw new Error('DirectusAsset requires either a DirectusProvider or an apiUrl prop');
@@ -47,7 +46,7 @@ export const DirectusAsset = ({
     setAssetUrl(`${apiUrl}/assets/${assetId}?${params.toString()}`);
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     generateUrl();
   }, [directusContext, asset, propsApiUrl, propsAccessToken, download]);
 

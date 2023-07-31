@@ -1,4 +1,3 @@
-import { createContext, useContext, useMemo, useState } from 'react';
 import {
   AuthStates,
   DirectusAssetProps,
@@ -7,6 +6,7 @@ import {
   DirectusImageProps,
   DirectusProviderProps,
 } from '@/types';
+import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 
 import { Directus, TypeMap, UserType } from '@directus/sdk';
 
@@ -44,14 +44,14 @@ export const DirectusProvider = <T extends TypeMap = TypeMap>({
         return <DirectusImage asset={asset} render={render} {...props} />;
       },
       _directusUser: user,
-      _setDirecctusUser: setUser,
+      _setDirectusUser: setUser,
       _authState: authState,
       _setAuthState: setAuthState,
     }),
     [apiUrl, directus, user, authState]
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     const checkAuth = async () => {
       let newAuthState: AuthStates = 'unauthenticated';
       try {
