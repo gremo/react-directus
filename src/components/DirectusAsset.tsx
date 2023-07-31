@@ -17,17 +17,17 @@ export const DirectusAsset = ({
     throw new Error('DirectusAsset requires either a DirectusProvider or an apiUrl prop');
   }
 
+  const assetId = asset && 'object' === typeof asset ? asset.id : asset;
+
+  if (!assetId) {
+    throw new Error('DirectusAsset requires an asset id');
+  }
+
   const { directus, apiUrl: contextApiUrl } = directusContext || {};
 
   const apiUrl = propsApiUrl || contextApiUrl;
 
   const generateUrl = async () => {
-    const assetId = asset && 'object' === typeof asset ? asset.id : asset;
-
-    if (!assetId) {
-      throw new Error('DirectusAsset requires an asset id');
-    }
-
     let accessToken: string | null = null;
 
     if (propsAccessToken) {
@@ -52,7 +52,7 @@ export const DirectusAsset = ({
   }, [directusContext, asset, propsApiUrl, propsAccessToken, download]);
 
   return render({
-    apiUrl: apiUrl || propsApiUrl,
+    apiUrl,
     asset,
     download,
     url: assetUrl,

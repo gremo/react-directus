@@ -24,16 +24,16 @@ export const DirectusImage = ({
     throw new Error('DirectusImage requires either a DirectusProvider or an apiUrl prop');
   }
 
+  const assetId = asset && 'object' === typeof asset ? asset.id : asset;
+
+  if (!assetId) {
+    throw new Error('DirectusImage requires an asset id');
+  }
+
   const { directus, apiUrl: contextApiUrl } = directusContext || {};
 
   const apiUrl = propsApiUrl || contextApiUrl;
   const generateImageUrl = async () => {
-    const assetId = asset && 'object' === typeof asset ? asset.id : asset;
-
-    if (!assetId) {
-      throw new Error('DirectusImage requires an asset id');
-    }
-
     let accessToken: string | null = null;
 
     if (propsAccessToken) {
