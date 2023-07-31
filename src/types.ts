@@ -22,6 +22,8 @@ export type DirectusAssetRenderer = Omit<DirectusAssetProps, 'render'> & {
 export interface DirectusAssetProps {
   /** Directus CMS API url. */
   apiUrl?: string;
+  /** The token to use for authentication. */
+  accessToken?: string;
   /** The asset as `string` or `object` with an `id` property of type `string`. */
   asset: DirectusAsset;
   /** Add `Content-Disposition` header and force browser to download file. */
