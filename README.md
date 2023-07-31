@@ -67,7 +67,9 @@ root.render(
 );
 ```
 
-## ⚙️ The hook `useDirectus`
+## ⚙️ Hooks
+
+### `useDirectus`
 
 After adding the provider, you can access the configured client anywhere in the app, using the `useDirectus` hook:
 
@@ -91,6 +93,43 @@ export const TodoList = () => {
 
   return todos.map(item => <TodoItem key={item.id} item={item} />);
 };
+```
+
+### `useDirectusAuth`
+
+The `useDirectusAuth` hook provides a few methods for working with the [Directus Authentication API](https://docs.directus.io/reference/old-sdk.html#authentication):
+
+- `login` - a function that accepts an email and password and returns a promise that resolves to the user object if the login is successful or rejects with an error otherwise
+- `logout` - a function that logs out the current user
+- `user` - the current user object
+- `authState` - the current authentication state, one of `loading` (the initial state), `logged-in` or `logged-out`
+
+```jsx
+import { useDirectusAuth } from 'react-directus';
+
+const Login = () => {
+  const { login } = useDirectusAuth();
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const { email, password } = e.currentTarget.elements;
+    login(email.value, password.value).catch(err => {
+      console.error(err);
+    });
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input type='email' name='email' />
+      <input type='password' name='password' />
+      <button type='submit'>Login</button>
+    </form>
+  );
+};
+
+export default Login;
+
 ```
 
 ## 🧩 Components (so far...)

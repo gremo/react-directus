@@ -1,13 +1,15 @@
 import * as React from 'react';
 
-import { Directus, TypeMap } from '@directus/sdk';
 import {
+  AuthStates,
   DirectusAssetProps,
   DirectusContextType,
   DirectusContextTypeGeneric,
   DirectusImageProps,
   DirectusProviderProps,
 } from '@/types';
+
+import { Directus, TypeMap, UserType } from '@directus/sdk';
 
 import { DirectusAsset } from '@components/DirectusAsset';
 import { DirectusImage } from '@components/DirectusImage';
@@ -22,12 +24,18 @@ export const DirectusContext = React.createContext<DirectusContextTypeGeneric<an
 export const DirectusProvider = <T extends TypeMap = TypeMap>({
   apiUrl,
   options,
+  autoLogin,
   children,
 }: DirectusProviderProps): JSX.Element => {
+  const [user, setUser] = React.useState<UserType | null>(null);
+  const [authState, setAuthState] = React.useState<AuthStates>('loading');
+
+  const directus = React.useMemo(() => new Directus<T>(apiUrl, options), [apiUrl, options]);
+
   const value = React.useMemo<DirectusContextType<T>>(
     () => ({
-      apiUrl: apiUrl,
-      directus: new Directus<T>(apiUrl, options),
+      apiUrl,
+      directus,
       DirectusAsset: ({ asset, render, ...props }: DirectusAssetProps) => {
         console.warn('Deprecated: Please import DirectusAsset directly from react-directus');
         return <DirectusAsset asset={asset} render={render} {...props} />;
@@ -36,9 +44,45 @@ export const DirectusProvider = <T extends TypeMap = TypeMap>({
         console.warn('Deprecated: Please import DirectusImage directly from react-directus');
         return <DirectusImage asset={asset} render={render} {...props} />;
       },
+      _directusUser: user,
+      _setDirecctusUser: setUser,
+      _authState: authState,
+      _setAuthState: setAuthState,
     }),
-    [apiUrl, options]
+    [apiUrl, directus, user, authState]
   );
+
+  React.useEffect(() => {
+    const checkAuth = async () => {
+      let newAuthState: AuthStates = 'unauthenticated';
+      try {
+        await directus.auth.refresh();
+        const token = await directus.auth.token;
+
+        if (token) {
+          const dUser = (await directus.users.me.read({
+            // * is a valid field, but typescript doesn't like it
+            // It's a wildcard, so it will return all fields
+            // This is the only way to get all fields
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            fields: ['*'] as any,
+          })) as UserType;
+
+          if (dUser) {
+            newAuthState = 'authenticated';
+            setUser(dUser);
+          }
+        }
+      } catch (error) {
+        console.log('auth-error', error);
+      } finally {
+        setAuthState(newAuthState || 'unauthenticated');
+      }
+    };
+    if (autoLogin) {
+      checkAuth();
+    }
+  }, [directus, autoLogin]);
 
   return <DirectusContext.Provider value={value}>{children}</DirectusContext.Provider>;
 };

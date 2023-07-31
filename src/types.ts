@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DirectusOptions, IDirectus, TypeMap } from '@directus/sdk';
+import { DirectusOptions, IDirectus, TypeMap, UserType } from '@directus/sdk';
 import { DirectusAsset } from '@components/DirectusAsset';
 import { DirectusImage } from '@components/DirectusImage';
 
@@ -103,8 +103,15 @@ export interface DirectusProviderProps {
   apiUrl: string;
   /** A set of options to pass to the Directus client. */
   options?: DirectusOptions;
+  /**
+   * If `true`, the provider will try to login the user automatically on mount.
+   * @default false
+   */
+  autoLogin?: boolean;
   children: React.ReactNode;
 }
+
+export type AuthStates = 'loading' | 'authenticated' | 'unauthenticated';
 
 /**
  * Shape of the main context.
@@ -117,6 +124,55 @@ export interface DirectusContextType<T extends TypeMap> {
   DirectusAsset: typeof DirectusAsset;
   /** The context-aware `DirectusImage` component, with pre-filled props. */
   DirectusImage: typeof DirectusImage;
+  /**
+   * Please use the data provided by the `useDirectusAuth` hook instead.
+   * @default 'loading'
+   * @internal
+   */
+  _authState: AuthStates;
+  /**
+   * Please use the functions provided by the `useDirectusAuth` hook instead.
+   * @internal
+   */
+  _setAuthState: React.Dispatch<React.SetStateAction<AuthStates>>;
+  /**
+   * Please use the data provided by the `useDirectusAuth` hook instead.
+   * @default null
+   * @internal
+   */
+  _directusUser: UserType | null;
+  /**
+   * Please use the functions provided by the `useDirectusAuth` hook instead.
+   * @internal
+   */
+  _setDirecctusUser: React.Dispatch<React.SetStateAction<UserType | null>>;
 }
 
 export type DirectusContextTypeGeneric<T extends TypeMap> = DirectusContextType<T> | null;
+
+export interface DirectusAuthHook {
+  /**
+   * Login the user. If successful, the user will be stored in the context.
+   * Else, an error will be thrown.
+   * @param email - The user email.
+   * @param password - The user password.
+   * @throws {Error} - If the login fails.
+   */
+  login: (email: string, password: string) => Promise<void>;
+  /**
+   * Logout the user. If successful, the user will be removed from the context.
+   * Else, an error will be thrown.
+   * @throws {Error} - If the logout fails.
+   */
+  logout: () => Promise<void>;
+  /**
+   * Represents the current authentication state.
+   * @default 'loading'
+   */
+  authState: AuthStates;
+  /**
+   * The current authenticated user.
+   * @default null
+   */
+  user: UserType | null;
+}
