@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        react-version: [16, 17, ""]
+        react-version: [17, ""]
 
     steps:
       - name: Checkout
@@ -38,10 +38,9 @@ jobs:
         if: matrix.react-version
         run: npm install react@^${{ matrix.react-version }} react-dom@^${{ matrix.react-version }}
 
-      # react 16.x-17.x support @testing-library/react up to version 12.x
+      # react 17.x support @testing-library/react up to version 12.x
       - name: Install @testing-library/react
         if: >-
-          startsWith(matrix.react-version, '16') ||
           startsWith(matrix.react-version, '17')
         run: npm install @testing-library/react@^12
 
