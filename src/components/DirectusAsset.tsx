@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import { generateAssetUrl, toID } from '@/utils/directus';
 import { DirectusAssetProps } from '@/types';
 import { DirectusContext } from '@/DirectusProvider';
 
@@ -13,19 +14,18 @@ export const DirectusAsset = ({
   const directusContext = React.useContext(DirectusContext);
   const [assetUrl, setAssetUrl] = React.useState<string | undefined>();
 
-  if (!directusContext && !propsApiUrl) {
+  const { directus, apiUrl: contextApiUrl } = directusContext || {};
+
+  const apiUrl = propsApiUrl || contextApiUrl;
+  if (!apiUrl) {
     throw new Error('DirectusAsset requires either a DirectusProvider or an apiUrl prop');
   }
 
-  const assetId = asset && 'object' === typeof asset ? asset.id : asset;
+  const assetId = toID(asset);
 
   if (!assetId) {
     throw new Error('DirectusAsset requires an asset id');
   }
-
-  const { directus, apiUrl: contextApiUrl } = directusContext || {};
-
-  const apiUrl = propsApiUrl || contextApiUrl;
 
   const generateUrl = async () => {
     let accessToken: string | null = null;
@@ -44,7 +44,7 @@ export const DirectusAsset = ({
     if (download) {
       params.append('download', '');
     }
-    setAssetUrl(`${apiUrl}/assets/${assetId}?${params.toString()}`);
+    setAssetUrl(generateAssetUrl(apiUrl, assetId, params));
   };
 
   React.useEffect(() => {

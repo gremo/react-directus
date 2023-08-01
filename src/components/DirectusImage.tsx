@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import { generateAssetUrl, toID } from '@/utils/directus';
 import { DirectusContext } from '@/DirectusProvider';
 import { DirectusImageProps } from '@/types';
 
@@ -20,19 +21,20 @@ export const DirectusImage = ({
   const directusContext = React.useContext(DirectusContext);
   const [imageUrl, setImageUrl] = React.useState<string | undefined>();
 
-  if (!directusContext && !propsApiUrl) {
+  const { directus, apiUrl: contextApiUrl } = directusContext || {};
+
+  const apiUrl = propsApiUrl || contextApiUrl;
+
+  if (!apiUrl) {
     throw new Error('DirectusImage requires either a DirectusProvider or an apiUrl prop');
   }
 
-  const assetId = asset && 'object' === typeof asset ? asset.id : asset;
+  const assetId = toID(asset);
 
   if (!assetId) {
     throw new Error('DirectusImage requires an asset id');
   }
 
-  const { directus, apiUrl: contextApiUrl } = directusContext || {};
-
-  const apiUrl = propsApiUrl || contextApiUrl;
   const generateImageUrl = async () => {
     let accessToken: string | null = null;
 
@@ -75,7 +77,7 @@ export const DirectusImage = ({
       }
     }
 
-    setImageUrl(`${apiUrl}/assets/${assetId}?${params.toString()}`);
+    setImageUrl(generateAssetUrl(apiUrl, assetId, params));
   };
 
   React.useEffect(() => {

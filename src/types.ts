@@ -7,7 +7,7 @@ import { DirectusImage } from '@components/DirectusImage';
  * Shape of a generic asset.
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type DirectusAsset = string | ({ id: string } & Record<string, any>);
+export type DirectusItem = string | ({ id: string } & Record<string, any>);
 
 /**
  * Shape of the `DirectusAsset` component `render` prop.
@@ -25,7 +25,7 @@ export interface DirectusAssetProps {
   /** The token to use for authentication. */
   accessToken?: string;
   /** The asset as `string` or `object` with an `id` property of type `string`. */
-  asset: DirectusAsset;
+  asset: DirectusItem;
   /** Add `Content-Disposition` header and force browser to download file. */
   download?: boolean;
   /** A function that returns the React element to be rendered. It will receive an object with the `url` key and all the passed props. */
