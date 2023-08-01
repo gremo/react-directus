@@ -1,6 +1,6 @@
+import { useCallback, useContext, useMemo } from 'react';
 import { DirectusAuthHook } from '../types';
 import { DirectusContext } from '../DirectusProvider';
-import React from 'react';
 import { UserType } from '@directus/sdk';
 
 /**
@@ -9,11 +9,12 @@ import { UserType } from '@directus/sdk';
  * @example
  * ```tsx
  * import { useDirectusAuth } from 'react-directus';
+ * import { FormEvent } from 'react';
  *
  * const Login = () => {
  *   const { login } = useDirectusAuth();
  *
- *   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+ *   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
  *     e.preventDefault();
  *
  *     const { email, password } = e.currentTarget.elements;
@@ -36,7 +37,7 @@ import { UserType } from '@directus/sdk';
  * ```
  */
 export const useDirectusAuth = (): DirectusAuthHook => {
-  const directusContext = React.useContext(DirectusContext);
+  const directusContext = useContext(DirectusContext);
 
   if (!directusContext) {
     throw new Error('useDirectusAuth has to be used within the DirectusProvider');
@@ -47,10 +48,10 @@ export const useDirectusAuth = (): DirectusAuthHook => {
     _authState: authState,
     _setAuthState: setAuthState,
     _directusUser: directusUser,
-    _setDirecctusUser: setDirectusUser,
+    _setDirectusUser: setDirectusUser,
   } = directusContext;
 
-  const login = React.useCallback<DirectusAuthHook['login']>(
+  const login = useCallback<DirectusAuthHook['login']>(
     async (email: string, password: string) => {
       await directus.auth.login({
         email,
@@ -72,7 +73,7 @@ export const useDirectusAuth = (): DirectusAuthHook => {
     [directus]
   );
 
-  const logout = React.useCallback<DirectusAuthHook['logout']>(async () => {
+  const logout = useCallback<DirectusAuthHook['logout']>(async () => {
     try {
       await directus.auth.logout();
     } finally {
@@ -81,7 +82,7 @@ export const useDirectusAuth = (): DirectusAuthHook => {
     }
   }, [directus]);
 
-  const value = React.useMemo<DirectusAuthHook>(
+  const value = useMemo<DirectusAuthHook>(
     () => ({
       user: directusUser,
       authState,

@@ -1,5 +1,5 @@
-import * as React from 'react';
 import { DirectusOptions, IDirectus, TypeMap, UserType } from '@directus/sdk';
+import { Dispatch, ReactNode, SetStateAction } from 'react';
 import { DirectusAsset } from '@components/DirectusAsset';
 import { DirectusImage } from '@components/DirectusImage';
 
@@ -110,7 +110,7 @@ export interface DirectusProviderProps {
    * @default false
    */
   autoLogin?: boolean;
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 export type AuthStates = 'loading' | 'authenticated' | 'unauthenticated';
@@ -136,7 +136,7 @@ export interface DirectusContextType<T extends TypeMap> {
    * Please use the functions provided by the `useDirectusAuth` hook instead.
    * @internal
    */
-  _setAuthState: React.Dispatch<React.SetStateAction<AuthStates>>;
+  _setAuthState: Dispatch<SetStateAction<AuthStates>>;
   /**
    * Please use the data provided by the `useDirectusAuth` hook instead.
    * @default null
@@ -147,7 +147,7 @@ export interface DirectusContextType<T extends TypeMap> {
    * Please use the functions provided by the `useDirectusAuth` hook instead.
    * @internal
    */
-  _setDirecctusUser: React.Dispatch<React.SetStateAction<UserType | null>>;
+  _setDirectusUser: Dispatch<SetStateAction<UserType | null>>;
 }
 
 export type DirectusContextTypeGeneric<T extends TypeMap> = DirectusContextType<T> | null;

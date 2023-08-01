@@ -3,7 +3,7 @@
     "baseUrl": "src",
     "target": "ES6",
     "module": "ESNext",
-    "jsx": "react",
+    "jsx": "react-jsx",
     "declaration": true,
     "declarationDir": "dist/types",
     "rootDir": "src",

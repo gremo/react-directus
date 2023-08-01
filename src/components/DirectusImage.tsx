@@ -1,5 +1,4 @@
-import * as React from 'react';
-
+import { useContext, useEffect, useState } from 'react';
 import { DirectusContext } from '@/DirectusProvider';
 import { DirectusImageProps } from '@/types';
 
@@ -17,8 +16,8 @@ export const DirectusImage = ({
   withoutEnlargement,
   transforms,
 }: DirectusImageProps): JSX.Element => {
-  const directusContext = React.useContext(DirectusContext);
-  const [imageUrl, setImageUrl] = React.useState<string | undefined>();
+  const directusContext = useContext(DirectusContext);
+  const [imageUrl, setImageUrl] = useState<string | undefined>();
 
   if (!directusContext && !propsApiUrl) {
     throw new Error('DirectusImage requires either a DirectusProvider or an apiUrl prop');
@@ -78,7 +77,7 @@ export const DirectusImage = ({
     setImageUrl(`${apiUrl}/assets/${assetId}?${params.toString()}`);
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     generateImageUrl();
   }, [
     directusContext,
