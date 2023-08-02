@@ -13,22 +13,20 @@ export type DirectusAsset = string | ({ id: string } & Record<string, any>);
  * Shape of the `DirectusAsset` component `render` prop.
  */
 export type DirectusAssetRenderer = Omit<DirectusAssetProps, 'render'> & {
+  /** The url of the asset. */
   url?: string;
 };
 
-/**
- * Shape of a generic asset component props.
- */
 export interface DirectusAssetProps {
-  /** Directus CMS API url. */
+  /** url to your Directus instance. */
   apiUrl?: string;
-  /** The token to use for authentication. */
+  /** The current user's access token. */
   accessToken?: string;
-  /** The asset as `string` or `object` with an `id` property of type `string`. */
+  /** The asset that should be rendered. */
   asset: DirectusAsset;
-  /** Add `Content-Disposition` header and force browser to download file. */
+  /** If the asset should be downloaded instead of rendered. */
   download?: boolean;
-  /** A function that returns the React element to be rendered. It will receive an object with the `url` key and all the passed props. */
+  /** A function that returns the React element to be rendered.*/
   render: (args: DirectusAssetRenderer) => JSX.Element;
 }
 
@@ -36,6 +34,7 @@ export interface DirectusAssetProps {
  * Shape of the `DirectusImage` component `render` prop, with `presetKey` prop.
  */
 export type DirectusImageRendererKeyed = Omit<DirectusImagePropsKeyed, 'render'> & {
+  /** The url of the asset. */
   url?: string;
 };
 
@@ -43,6 +42,7 @@ export type DirectusImageRendererKeyed = Omit<DirectusImagePropsKeyed, 'render'>
  * Shape of the `DirectusImage` component `render` prop, with dynamic props.
  */
 export type DirectusImageRendererDynamic = Omit<DirectusImagePropsDynamic, 'render'> & {
+  /** The url of the asset. */
   url?: string;
 };
 
@@ -58,8 +58,11 @@ export type DirectusImagePropsBase = Omit<DirectusAssetProps, 'download' | 'rend
   render: (args: DirectusImageRenderer) => JSX.Element;
 };
 
+/**
+ * Represents the {@link https://docs.directus.io/reference/files.html#requesting-a-thumbnail | Custom Transformations} you can apply to an image.
+ */
 export interface DirectusImageCustomProps {
-  /** The width of the thumbnail in pixels. */
+  /** The width of the thumbnail in pixels.*/
   width?: number;
   /** The height of the thumbnail in pixels. */
   height?: number;
@@ -67,11 +70,11 @@ export interface DirectusImageCustomProps {
   quality?: number;
   /** The fit of the thumbnail while always preserving the aspect ratio. */
   fit?: 'cover' | 'contain' | 'inside' | 'outside';
-  /** What file format to return the image in. */
+  /** The file format of the thumbnail. */
   format?: 'auto' | 'jpg' | 'png' | 'webp' | 'tiff';
   /** Disable image up-scaling. */
   withoutEnlargement?: boolean;
-  /** An array of sharp operations to apply to the image. */
+  /** An array of sharp operations to apply to the image. {@link https://sharp.pixelplumbing.com/api-operation | Sharp API}*/
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   transforms?: [string, ...any[]][];
 }
@@ -97,38 +100,53 @@ export type DirectusImagePropsKeyed = {
  */
 export type DirectusImageProps = DirectusImagePropsDynamic | DirectusImagePropsKeyed;
 
-/**
- * Shape of the context provider props.
- */
 export interface DirectusProviderProps {
-  /** Directus CMS API url. */
+  /** url to your Directus instance. */
   apiUrl: string;
-  /** A set of options to pass to the Directus client. */
+  /** A set of options to pass to the Directus client. {@link https://docs.directus.io/reference/old-sdk.html#custom-configuration | Directus Client configuration} */
   options?: DirectusOptions;
   /**
    * If `true`, the provider will try to login the user automatically on mount.
-   * @default false
+   * @defaultValue false
    */
   autoLogin?: boolean;
   children: ReactNode;
 }
 
+/**
+ * Possible states of the authentication.
+ * @defaultValue 'loading'
+ */
 export type AuthStates = 'loading' | 'authenticated' | 'unauthenticated';
 
 /**
  * Shape of the main context.
+ * @typeParam T - The `TypeMap` of your Directus instance.
  */
 export interface DirectusContextType<T extends TypeMap> {
+  /** url to your Directus instance. */
   apiUrl: string;
+  /**
+   * The Directus client instance configured with:
+   * - the `TypeMap` you provided
+   * - the `apiUrl` you provided
+   * - the `options` you provided
+   */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   directus: IDirectus<T>;
-  /** The context-aware `DirectusAsset` component, with pre-filled props. */
+  /**
+   * {@inheritDoc DirectusAsset}
+   * @deprecated Please import the `DirectusAsset` component directly.
+   */
   DirectusAsset: typeof DirectusAsset;
-  /** The context-aware `DirectusImage` component, with pre-filled props. */
+  /**
+   * {@inheritDoc DirectusImage}
+   * @deprecated Please import the `DirectusImage` component directly.
+   */
   DirectusImage: typeof DirectusImage;
   /**
    * Please use the data provided by the `useDirectusAuth` hook instead.
-   * @default 'loading'
+   * @defaultValue 'loading'
    * @internal
    */
   _authState: AuthStates;
@@ -139,7 +157,7 @@ export interface DirectusContextType<T extends TypeMap> {
   _setAuthState: Dispatch<SetStateAction<AuthStates>>;
   /**
    * Please use the data provided by the `useDirectusAuth` hook instead.
-   * @default null
+   * @defaultValue null
    * @internal
    */
   _directusUser: UserType | null;
@@ -152,6 +170,9 @@ export interface DirectusContextType<T extends TypeMap> {
 
 export type DirectusContextTypeGeneric<T extends TypeMap> = DirectusContextType<T> | null;
 
+/**
+ * A set of functions and data to manage authentication.
+ */
 export interface DirectusAuthHook {
   /**
    * Login the user. If successful, the user will be stored in the context.
@@ -169,12 +190,12 @@ export interface DirectusAuthHook {
   logout: () => Promise<void>;
   /**
    * Represents the current authentication state.
-   * @default 'loading'
+   * @defaultValue 'loading'
    */
   authState: AuthStates;
   /**
    * The current authenticated user.
-   * @default null
+   * @defaultValue null
    */
   user: UserType | null;
 }
