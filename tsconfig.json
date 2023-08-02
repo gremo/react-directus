@@ -1,12 +1,15 @@
 {
   "compilerOptions": {
+    "rootDir": "src",
     "baseUrl": "src",
+    "outDir": "dist",
     "target": "ES6",
     "module": "ESNext",
     "jsx": "react-jsx",
     "declaration": true,
     "declarationDir": "dist/types",
-    "rootDir": "src",
+    "declarationMap": true,
+    "sourceMap": true,
     "strict": true,
     "moduleResolution": "node",
     "esModuleInterop": true,

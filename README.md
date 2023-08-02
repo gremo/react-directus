@@ -193,6 +193,10 @@ export const TodoItem = ({ item }) => {
 };
 ```
 
+## Documentation
+
+The full documentation for this project can be found in [docs/react-directus.md](docs/react-directus.md). It contains detailed information about the components, usage, and additional features.
+
 ## 📱 React Native
 
 To make the project fully compatible with React Native you need to install the [localstorage-polyfill](https://www.npmjs.com/package/localstorage-polyfill) package:
