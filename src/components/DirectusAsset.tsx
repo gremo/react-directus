@@ -2,6 +2,19 @@ import { useContext, useEffect, useState } from 'react';
 import { DirectusAssetProps } from '@/types';
 import { DirectusContext } from '@/DirectusProvider';
 
+/**
+ * DirectusAsset is a React Component that renders an asset from your Directus API.
+ * @example Here is an example of how to use DirectusAsset
+ * ```tsx
+ * import { DirectusAsset } from 'react-directus';
+ * import { createRoot } from 'react-dom/client';
+ *
+ * const root = createRoot(document.getElementById('root'));
+ * root.render(
+ *  <DirectusAsset asset={1} render={({ url }) => <img src={url} />} />
+ * );
+ * ```
+ */
 export const DirectusAsset = ({
   apiUrl: propsApiUrl,
   accessToken: propsAccessToken,

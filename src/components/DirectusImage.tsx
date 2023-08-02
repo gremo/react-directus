@@ -2,6 +2,20 @@ import { useContext, useEffect, useState } from 'react';
 import { DirectusContext } from '@/DirectusProvider';
 import { DirectusImageProps } from '@/types';
 
+/**
+ * DirectusImage is a React Component that renders an image from your Directus API.
+ * @example Here is an example of how to use DirectusImage
+ * ```tsx
+ * import { DirectusImage } from 'react-directus';
+ *
+ * export const MyImage = ({ imageId }) => (
+ *  <DirectusImage
+ *   asset={imageId}
+ *   quality={50}
+ *   render={({ url }) => <img src={url}
+ * />}
+ * ```
+ */
 export const DirectusImage = ({
   apiUrl: propsApiUrl,
   accessToken: propsAccessToken,
