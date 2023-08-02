@@ -1,6 +1,6 @@
 import { useCallback, useContext, useMemo } from 'react';
-import { DirectusAuthHook } from '@/types';
-import { DirectusContext } from '@/DirectusProvider';
+import { DirectusAuthHook } from '../types';
+import { DirectusContext } from '../DirectusProvider';
 import { UserType } from '@directus/sdk';
 
 /**
