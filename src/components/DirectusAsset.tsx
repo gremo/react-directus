@@ -1,6 +1,32 @@
 import { useContext, useEffect, useState } from 'react';
-import { DirectusAssetProps } from '@/types';
 import { DirectusContext } from '@/DirectusProvider';
+
+/**
+ * Shape of a generic asset.
+ */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type DirectusAsset = string | ({ id: string } & Record<string, any>);
+
+/**
+ * Shape of the `DirectusAsset` component `render` prop.
+ */
+export type DirectusAssetRenderer = Omit<DirectusAssetProps, 'render'> & {
+  /** The url of the asset. */
+  url?: string;
+};
+
+export interface DirectusAssetProps {
+  /** url to your Directus instance. */
+  apiUrl?: string;
+  /** The current user's access token. */
+  accessToken?: string;
+  /** The asset that should be rendered. */
+  asset: DirectusAsset;
+  /** If the asset should be downloaded instead of rendered. */
+  download?: boolean;
+  /** A function that returns the React element to be rendered.*/
+  render: (args: DirectusAssetRenderer) => JSX.Element;
+}
 
 /**
  * DirectusAsset is a React Component that renders an asset from your Directus API.

@@ -1,5 +1,4 @@
-import { DirectusAsset } from '@components/DirectusAsset';
-import { DirectusAssetRenderer } from '@/types';
+import { DirectusAsset, DirectusAssetRenderer } from '@components/DirectusAsset';
 import { render } from '@testing-library/react';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars

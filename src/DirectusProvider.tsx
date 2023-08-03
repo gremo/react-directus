@@ -1,17 +1,59 @@
-import {
-  AuthStates,
-  DirectusAssetProps,
-  DirectusContextType,
-  DirectusContextTypeGeneric,
-  DirectusImageProps,
-  DirectusProviderProps,
-} from '@/types';
-import { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useEffect, useMemo, useState } from 'react';
+import { Directus, DirectusOptions, IDirectus, TypeMap, UserType } from '@directus/sdk';
+import { DirectusAsset, DirectusAssetProps } from '@components/DirectusAsset';
+import { DirectusImage, DirectusImageProps } from '@components/DirectusImage';
+import { AuthStates } from '@hooks/useDirectusAuth';
 
-import { Directus, TypeMap, UserType } from '@directus/sdk';
+/**
+ * Shape of the main context.
+ * @typeParam T - The `TypeMap` of your Directus instance.
+ */
+export interface DirectusContextType<T extends TypeMap> {
+  /** url to your Directus instance. */
+  apiUrl: string;
+  /**
+   * The Directus client instance configured with:
+   * - the `TypeMap` you provided
+   * - the `apiUrl` you provided
+   * - the `options` you provided
+   */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  directus: IDirectus<T>;
+  /**
+   * {@inheritDoc DirectusAsset}
+   * @deprecated Please import the `DirectusAsset` component directly.
+   */
+  DirectusAsset: typeof DirectusAsset;
+  /**
+   * {@inheritDoc DirectusImage}
+   * @deprecated Please import the `DirectusImage` component directly.
+   */
+  DirectusImage: typeof DirectusImage;
+  /**
+   * Please use the data provided by the `useDirectusAuth` hook instead.
+   * @defaultValue 'loading'
+   * @internal
+   */
+  _authState: AuthStates;
+  /**
+   * Please use the functions provided by the `useDirectusAuth` hook instead.
+   * @internal
+   */
+  _setAuthState: Dispatch<SetStateAction<AuthStates>>;
+  /**
+   * Please use the data provided by the `useDirectusAuth` hook instead.
+   * @defaultValue null
+   * @internal
+   */
+  _directusUser: UserType | null;
+  /**
+   * Please use the functions provided by the `useDirectusAuth` hook instead.
+   * @internal
+   */
+  _setDirectusUser: Dispatch<SetStateAction<UserType | null>>;
+}
 
-import { DirectusAsset } from '@components/DirectusAsset';
-import { DirectusImage } from '@components/DirectusImage';
+export type DirectusContextTypeGeneric<T extends TypeMap> = DirectusContextType<T> | null;
 
 /**
  * DirectusContext is a React Context that provides an instance of the Directus SDK and the apiUrl to all child components.
@@ -20,6 +62,19 @@ import { DirectusImage } from '@components/DirectusImage';
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const DirectusContext = createContext<DirectusContextTypeGeneric<any>>(null);
+
+export interface DirectusProviderProps {
+  /** url to your Directus instance. */
+  apiUrl: string;
+  /** A set of options to pass to the Directus client. {@link https://docs.directus.io/reference/old-sdk.html#custom-configuration | Directus Client configuration} */
+  options?: DirectusOptions;
+  /**
+   * If `true`, the provider will try to login the user automatically on mount.
+   * @defaultValue false
+   */
+  autoLogin?: boolean;
+  children: ReactNode;
+}
 
 /**
  * DirectusProvider is a React Context Provider that provides an instance of the Directus SDK and the apiUrl to all child components.
