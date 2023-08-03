@@ -1,5 +1,4 @@
-import { DirectusImageProps, DirectusImageRenderer } from '@/types';
-import { DirectusImage } from '@components/DirectusImage';
+import { DirectusImage, DirectusImageProps, DirectusImageRenderer } from '@components/DirectusImage';
 import { render } from '@testing-library/react';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars

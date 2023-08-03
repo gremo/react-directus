@@ -1,7 +1,42 @@
 import { useCallback, useContext, useMemo } from 'react';
-import { DirectusAuthHook } from '../types';
 import { DirectusContext } from '../DirectusProvider';
 import { UserType } from '@directus/sdk';
+
+/**
+ * Possible states of the authentication.
+ * @defaultValue 'loading'
+ */
+export type AuthStates = 'loading' | 'authenticated' | 'unauthenticated';
+
+/**
+ * A set of functions and data to manage authentication.
+ */
+export interface DirectusAuthHook {
+  /**
+   * Login the user. If successful, the user will be stored in the context.
+   * Else, an error will be thrown.
+   * @param email - The user email.
+   * @param password - The user password.
+   * @throws {Error} - If the login fails.
+   */
+  login: (email: string, password: string) => Promise<void>;
+  /**
+   * Logout the user. If successful, the user will be removed from the context.
+   * Else, an error will be thrown.
+   * @throws {Error} - If the logout fails.
+   */
+  logout: () => Promise<void>;
+  /**
+   * Represents the current authentication state.
+   * @defaultValue 'loading'
+   */
+  authState: AuthStates;
+  /**
+   * The current authenticated user.
+   * @defaultValue null
+   */
+  user: UserType | null;
+}
 
 /**
  * A hook to access the Directus authentication state and methods.
