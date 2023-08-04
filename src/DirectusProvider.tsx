@@ -21,12 +21,11 @@ export interface DirectusContextType<T extends TypeMap> {
   directus: IDirectus<T>;
   /**
    * {@inheritDoc DirectusAsset}
-   * @deprecated Please import the `DirectusAsset` component directly.
-   */
+   * @deprecated Please import the new `DirectusFile` component instead.
   DirectusAsset: typeof DirectusAsset;
   /**
    * {@inheritDoc DirectusImage}
-   * @deprecated Please import the `DirectusImage` component directly.
+   * @deprecated Please import the `DirectusFile` component instead.
    */
   DirectusImage: typeof DirectusImage;
   /**
