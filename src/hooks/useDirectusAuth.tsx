@@ -1,5 +1,5 @@
 import { useCallback, useContext, useMemo } from 'react';
-import { DirectusContext } from '../DirectusProvider';
+import { DirectusContext } from '@/DirectusProvider';
 import { UserType } from '@directus/sdk';
 
 /**
