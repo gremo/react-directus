@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { DirectusAssetObject, DirectusFile, RenderPropsFile } from '@components/DirectusFile';
 
 export interface RenderPropsAsset extends Omit<DirectusAssetProps, 'render'> {

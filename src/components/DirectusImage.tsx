@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-import { DirectusAssetObject, DirectusFile, RenderPropsFile } from '@components/DirectusFile';
+import { DirectusAssetObject, DirectusFile, Fit, Format, RenderPropsFile } from '@components/DirectusFile';
 
 export interface RenderPropsImage extends Omit<DirectusImageProps, 'render'> {
   url?: string;
@@ -29,23 +28,17 @@ export const DirectusImage = ({
   quality,
   format,
 }: DirectusImageProps): JSX.Element => {
+  // Convert the the new props to the old props
   const renderOld = (props: RenderPropsFile): JSX.Element => {
-    let params = {};
-    if ('object' === typeof props.directusTransform) {
-      params = {
-        ...props.directusTransform,
-        width: props.directusTransform?.width ?? width,
-        height: props.directusTransform?.height ?? height,
-        fit: props.directusTransform?.fit ?? fit,
-        quality: props.directusTransform?.quality ?? quality,
-        format: props.directusTransform?.format ?? format,
-      };
-    }
     return render({
       apiUrl,
-      url: props.url ?? '',
-      asset: props.asset,
-      ...params,
+      url: props.url,
+      asset,
+      width,
+      height,
+      fit,
+      quality,
+      format,
     });
   };
 
@@ -56,11 +49,9 @@ export const DirectusImage = ({
       directusTransform={{
         width,
         height,
-        // @ts-ignore
-        fit,
+        fit: fit ? Fit[fit] : undefined,
         quality,
-        // @ts-ignore
-        format,
+        format: format ? Format[format] : undefined,
       }}
       render={renderOld}
     />
