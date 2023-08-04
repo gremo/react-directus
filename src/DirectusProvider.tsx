@@ -103,7 +103,7 @@ export const DirectusProvider = <T extends TypeMap = TypeMap>({
   children,
 }: DirectusProviderProps): JSX.Element => {
   const [user, setUser] = useState<UserType | null>(null);
-  const [authState, setAuthState] = useState<AuthStates>('loading');
+  const [authState, setAuthState] = useState<AuthStates>(autoLogin ? AuthStates.LOADING : AuthStates.UNAUTHENTICATED);
 
   const directus = useMemo(() => new Directus<T>(apiUrl, options), [apiUrl, options]);
 
@@ -129,7 +129,7 @@ export const DirectusProvider = <T extends TypeMap = TypeMap>({
 
   useEffect(() => {
     const checkAuth = async () => {
-      let newAuthState: AuthStates = 'unauthenticated';
+      let newAuthState: AuthStates = AuthStates.UNAUTHENTICATED;
       try {
         await directus.auth.refresh();
         const token = await directus.auth.token;
@@ -144,14 +144,14 @@ export const DirectusProvider = <T extends TypeMap = TypeMap>({
           })) as UserType;
 
           if (dUser) {
-            newAuthState = 'authenticated';
+            newAuthState = AuthStates.AUTHENTICATED;
             setUser(dUser);
           }
         }
       } catch (error) {
         console.log('auth-error', error);
       } finally {
-        setAuthState(newAuthState || 'unauthenticated');
+        setAuthState(newAuthState || AuthStates.UNAUTHENTICATED);
       }
     };
     if (autoLogin) {
