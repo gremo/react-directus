@@ -17,7 +17,7 @@ export interface DirectusImageProps {
 }
 
 /**
- * @deprecated Please use the `DirectusFile` component instead.
+ * @deprecated  Please import the new `DirectusFile` component instead.
  */
 export const DirectusImage = ({
   apiUrl,

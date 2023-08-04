@@ -13,7 +13,7 @@ export interface DirectusAssetProps {
 }
 
 /**
- * @deprecated Please use the `DirectusFile` component instead.
+ * @deprecated  Please import the new `DirectusFile` component instead.
  */
 export const DirectusAsset = ({ apiUrl, asset, download, render }: DirectusAssetProps): JSX.Element => {
   const renderOld = (props: RenderPropsFile): JSX.Element => {
