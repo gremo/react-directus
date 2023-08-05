@@ -38,6 +38,7 @@ The `<DirectusProvider>` component makes the [Directus JavaScript SDK](https://d
 - `apiUrl`: the URL of your Directus API
 - `options` (optional): an object containing the [Directus client options](https://docs.directus.io/reference/sdk/#reference)
 - `autoLogin` (optional): if `true`, the SDK will try to login using the `accessToken` stored in the browser's local storage
+- `onAutoLoginError` (optional): a callback function that is called when the auto-login fails
 
 ```jsx
 import { App } from './App';
