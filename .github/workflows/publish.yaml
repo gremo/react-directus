@@ -1,19 +1,20 @@
-name: npm-publish
+name: Publish to NPM
+
 on:
   push:
     branches:
       - main
     tags:
       - 'v*.*.*'
+
 jobs:
-  npm-publish:
-    name: npm-publish
+  publish:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout repository
+    - name: Checkout
       uses: actions/checkout@v3
 
-    - name: Setup Node.js
+    - name: Setup Node.js environment
       uses: actions/setup-node@v3
       with:
         node-version: 18
@@ -21,14 +22,14 @@ jobs:
 
     - name: Install dependencies
       run: npm ci
-        
-    - name: Run clean
+
+    - name: Clean
       run: npm run clean
 
-    - name: Run build
+    - name: Build
       run: npm run build
-    
-    - name: Publish to NPM
+
+    - name: Publish
       run: npm publish
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
