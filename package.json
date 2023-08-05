@@ -1,6 +1,6 @@
 {
   "name": "react-directus",
-  "version": "0.1.0",
+  "version": "0.0.2",
   "description": "A set of React components and utilities for Directus Headless CMS",
   "files": [
     "dist"
