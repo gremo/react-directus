@@ -150,7 +150,7 @@ export const DirectusFile = ({
       // Adds all the custom transforms to the params
       for (const [key, value] of Object.entries(directusTransform)) {
         if (value) {
-          params.append(key, value as string);
+          params.append(key, value.toString());
         }
       }
     }
