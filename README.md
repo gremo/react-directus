@@ -33,7 +33,11 @@ Install this library along with `@directus/sdk@` (version 10 or below):
 npm install react-directus @directus/sdk@^10
 ```
 
-The `<DirectusProvider>` component makes the [Directus JavaScript SDK](https://docs.directus.io/reference/sdk/) available to any nested components that need to access it. You can optionally pass an `options` object to the provider, which will be passed to the Directus client as the [`init`](https://docs.directus.io/reference/sdk/#reference) parameter:
+The `<DirectusProvider>` component makes the [Directus JavaScript SDK](https://docs.directus.io/reference/sdk/) available to any nested components that need to access it. The provider accepts the following props:
+
+- `apiUrl`: the URL of your Directus API
+- `options` (optional): an object containing the [Directus client options](https://docs.directus.io/reference/sdk/#reference)
+- `autoLogin` (optional): if `true`, the SDK will try to login using the `accessToken` stored in the browser's local storage
 
 ```jsx
 import { App } from './App';
