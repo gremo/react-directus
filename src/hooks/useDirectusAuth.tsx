@@ -4,9 +4,14 @@ import { UserType } from '@directus/sdk';
 
 /**
  * Possible states of the authentication.
- * @defaultValue 'loading'
+ * @defaultValue AuthStates.UNAUTHENTICATED
+ * @defaultValue AuthStates.LOADING - When AutoLogin is enabled.
  */
-export type AuthStates = 'loading' | 'authenticated' | 'unauthenticated';
+export enum AuthStates {
+  LOADING = 'loading',
+  AUTHENTICATED = 'authenticated',
+  UNAUTHENTICATED = 'unauthenticated',
+}
 
 /**
  * A set of functions and data to manage authentication.
@@ -99,10 +104,10 @@ export const useDirectusAuth = (): DirectusAuthHook => {
 
       if (dUser) {
         setDirectusUser(dUser);
-        setAuthState('authenticated');
+        setAuthState(AuthStates.AUTHENTICATED);
       } else {
         setDirectusUser(null);
-        setAuthState('unauthenticated');
+        setAuthState(AuthStates.UNAUTHENTICATED);
       }
     },
     [directus]
@@ -112,7 +117,7 @@ export const useDirectusAuth = (): DirectusAuthHook => {
     try {
       await directus.auth.logout();
     } finally {
-      setAuthState('unauthenticated');
+      setAuthState(AuthStates.UNAUTHENTICATED);
       setDirectusUser(null);
     }
   }, [directus]);
