@@ -73,6 +73,10 @@ export interface DirectusProviderProps {
    * @defaultValue false
    */
   autoLogin?: boolean;
+  /**
+   * Callback function that will be called if the auto login fails.
+   */
+  onAutoLoginError?: (error: Error) => void;
   children: ReactNode;
 }
 
@@ -100,6 +104,7 @@ export const DirectusProvider = <T extends TypeMap = TypeMap>({
   apiUrl,
   options,
   autoLogin,
+  onAutoLoginError,
   children,
 }: DirectusProviderProps): JSX.Element => {
   const [user, setUser] = useState<UserType | null>(null);
@@ -149,7 +154,9 @@ export const DirectusProvider = <T extends TypeMap = TypeMap>({
           }
         }
       } catch (error) {
-        console.log('auth-error', error);
+        if (onAutoLoginError && error instanceof Error) {
+          onAutoLoginError(error);
+        }
       } finally {
         setAuthState(newAuthState || AuthStates.UNAUTHENTICATED);
       }
