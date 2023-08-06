@@ -9,12 +9,7 @@
   },
   "type": "module",
   "files": [
-    "dist",
-    "src",
-    "README.md",
-    "LICENSE",
-    "tsconfig.json",
-    "package.json"
+    "dist"
   ],
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
