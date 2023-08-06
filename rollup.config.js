@@ -1,8 +1,7 @@
 import commonjs from '@rollup/plugin-commonjs';
 import pkg from './package.json';
 import resolve from '@rollup/plugin-node-resolve';
-import typescript from 'rollup-plugin-typescript2';
-
+import typescript from '@rollup/plugin-typescript';
 export default {
   input: 'src/index.ts',
   output: [
@@ -16,5 +15,5 @@ export default {
     },
   ],
   external: ['@directus/sdk', 'react'],
-  plugins: [resolve(), commonjs(), typescript({ useTsconfigDeclarationDir: true })],
+  plugins: [resolve(), commonjs(), typescript()],
 };
