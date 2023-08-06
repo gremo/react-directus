@@ -2,6 +2,12 @@
   "name": "react-directus",
   "version": "0.0.2",
   "description": "A set of React components and utilities for Directus Headless CMS",
+  "homepage": "https://github.com/gremo/react-directus",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gremo/react-directus.git"
+  },
+  "type": "module",
   "files": [
     "dist"
   ],
@@ -11,8 +17,8 @@
   "scripts": {
     "lint": "eslint src/* --ext .ts,.tsx",
     "test": "jest",
-    "prepublishOnly": "npm run build",
     "build": "rimraf dist/* && rollup -c --bundleConfigAsCjs",
+    "prepublishOnly": "npm run build",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json}\""
   },
   "pre-commit": [
