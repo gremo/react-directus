@@ -61,11 +61,15 @@
     "rollup-plugin-typescript2": "0.36.0",
     "ts-jest": "29.1.1",
     "tslib": "2.6.2",
-    "typescript": "5.2.2"
+    "typescript": "5.2.2",
+    "@react-native-async-storage/async-storage": "^1.19.3"
   },
   "peerDependencies": {
     "@directus/sdk": "^11.0.0",
     "react": "^17.0.0 || ^18.0.0",
     "react-dom": "^17.0.0 || ^18.0.0"
+  },
+  "optionalDependencies": {
+    "@react-native-async-storage/async-storage": "^1.19.3"
   }
 }
