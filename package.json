@@ -19,7 +19,8 @@
     "test": "jest",
     "build": "rimraf dist/* && rollup -c --bundleConfigAsCjs",
     "prepublishOnly": "npm run build",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json}\""
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json}\"",
+    "pre-pull-request": "npm run format && npm run lint && npm run test && npm run build"
   },
   "pre-commit": [
     "format",
