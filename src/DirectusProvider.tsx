@@ -1,7 +1,6 @@
 import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useEffect, useMemo, useState } from 'react';
 import { Directus, DirectusOptions, IDirectus, TypeMap, UserType } from '@directus/sdk';
-import { DirectusAsset, DirectusAssetProps } from '@components/DirectusAsset';
-import { DirectusImage, DirectusImageProps } from '@components/DirectusImage';
+
 import { AuthStates } from '@hooks/useDirectusAuth';
 
 /**
@@ -20,14 +19,7 @@ export interface DirectusContextType<T extends TypeMap> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   directus: IDirectus<T>;
   /**
-   * {@inheritDoc DirectusAsset}
-   * @deprecated Please import the new `DirectusFile` component instead.
-  DirectusAsset: typeof DirectusAsset;
-  /**
-   * {@inheritDoc DirectusImage}
-   * @deprecated Please import the `DirectusFile` component instead.
-   */
-  DirectusImage: typeof DirectusImage;
+
   /**
    * Please use the data provided by the `useDirectusAuth` hook instead.
    * @defaultValue 'loading'
@@ -115,14 +107,6 @@ export const DirectusProvider = <T extends TypeMap = TypeMap>({
     () => ({
       apiUrl,
       directus,
-      DirectusAsset: ({ asset, render, ...props }: DirectusAssetProps) => {
-        console.warn('Deprecated: Please import the new `DirectusFile` component instead.');
-        return <DirectusAsset asset={asset} render={render} {...props} />;
-      },
-      DirectusImage: ({ asset, render, ...props }: DirectusImageProps) => {
-        console.warn('Deprecated: Please import the new `DirectusFile` component instead.');
-        return <DirectusImage asset={asset} render={render} {...props} />;
-      },
       _directusUser: user,
       _setDirectusUser: setUser,
       _authState: authState,
