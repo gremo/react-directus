@@ -140,62 +140,49 @@ export default Login;
 
 ## 🧩 Components (so far...)
 
-This package contains a few components for working with Direcuts [files](https://docs.directus.io/reference/files/). They are all configured for using the `apiUrl` and `accessToken` specified in the provider. Hopefully, more will come in the future 🤗.
+This package contains a component for working with Direcuts [files](https://docs.directus.io/reference/files/). It is configured for using the `apiUrl` and `accessToken` specified in the provider. Hopefully, more will come in the future 🤗.
 
-> **Note**: components can also be used in a "standalone" way, meaning that they are not bound to the `apiUrl` specified in the provider. In that case, they both accept an `apiUrl` and an optional `accessToken` prop.
+> **Note**: The components can also be used in a "standalone" way, meaning that they are not bound to the `apiUrl` specified in the provider. In that case, they both accept an `apiUrl` and an optional `accessToken` prop.
 
-### `<DirectusAsset>`
+### `<DirectusFile>`
 
 Computes the URL of the given resource `asset`, rendering it using the `render` prop:
 
+- `apiUrl`: the API URL of the Directus instance(can be omitted if the provider is used)
+- `accessToken`: the access token to use for authentication (can be omitted if the provider is used)
 - `asset`: the asset representing the resource (`string` or `object` with an `id` property)
 - `download`: force browser to download the asset (force the `Content-Disposition` header)
+- `directusTransform`: an object with the Directus [transform](https://docs.directus.io/reference/files/#transform) options or a preset key
+- `filename`: the filename to use for the asset [SEO](https://docs.directus.io/reference/files/#accessing-a-file)
 - `render`: a function (which receives an object with the `url` property) that provides the component to render
 
-```jsx
-import { DirectusAsset } from 'react-directus';
+#### Example with custom transform
 
-export const TodoItem = ({ item }) => {
-  return (
-    <div>
-      <h1>Todo #{item.id}</h1>
-      <DirectusAsset asset={item.attachment} download={true}
-        render={({ asset, url }) => <a href={url}>{asset.filename_download}</a>} />
-    </div>
-  );
-};
+```jsx
+import { DirectusFile } from 'react-directus';
+
+export const MyImage = ({ imageId }) => (
+  <DirectusFile
+    asset={imageId}
+    directusTransforms={{ width: 200, height: 200 }}
+    render={({ url }) => <img src={url} />}
+  />
+);
 ```
 
-### `<DirectusImage>`
-
-Computes the URL of the given resource `asset`, rendering it using the `render` prop:
-
-- `asset`: the asset representing the resource (`string` or `object` with an `id` property)
-- `render`: a function (which receives an object with the `url` property and all propertys provided to `DirectusImage`) that provides the component to render
-- `presetKey`: the key of the [Storage Asset Preset](https://docs.directus.io/user-guide/cloud/project-settings.html#files-storage), a shortcut for the below parameters
-
-> **Note**: the following parameters are ignored if `presetKey` is provided
-
-- `fit`: fit of the thumbnail while always preserving the aspect ratio, can be any of the following options: `cover`, `contain`, `inside` or `outside`
-- `height`: height of the thumbnail in pixels
-- `width`: width of the thumbnail in pixels
-- `quality`: quality of the thumbnail (`1` to `100`)
-- `format`: the return file format
-- `withoutEnlargement`: if `true`, the thumbnail will not be larger than the original image
-- `transforms`: an array of [Sharp transforms](https://sharp.pixelplumbing.com/api-operation) to apply to the image
+#### Example for downloading a file
 
 ```jsx
-import { DirectusImage } from 'react-directus';
+import { DirectusFile } from 'react-directus';
 
-export const TodoItem = ({ item }) => {
-  return (
-    <div>
-      <h1>Todo #{item.id}</h1>
-      <DirectusImage asset={item.image} fit="cover" quality="75"
-        render={({ asset, url }) => <img src={url} alt={asset.title} />} />
-    </div>
-  );
-};
+export const MyImage = ({ imageId }) => (
+  <DirectusFile
+    asset={imageId}
+    download
+    filename="my-file-name.jpg"
+    render={({ url, filename }) => <a href={url} download={filename}>Download</a>}
+  />
+);
 ```
 
 ## 📱 React Native

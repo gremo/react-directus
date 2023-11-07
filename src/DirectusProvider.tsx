@@ -21,12 +21,11 @@ export interface DirectusContextType<T extends TypeMap> {
   directus: IDirectus<T>;
   /**
    * {@inheritDoc DirectusAsset}
-   * @deprecated Please import the `DirectusAsset` component directly.
-   */
+   * @deprecated Please import the new `DirectusFile` component instead.
   DirectusAsset: typeof DirectusAsset;
   /**
    * {@inheritDoc DirectusImage}
-   * @deprecated Please import the `DirectusImage` component directly.
+   * @deprecated Please import the `DirectusFile` component instead.
    */
   DirectusImage: typeof DirectusImage;
   /**
@@ -117,11 +116,11 @@ export const DirectusProvider = <T extends TypeMap = TypeMap>({
       apiUrl,
       directus,
       DirectusAsset: ({ asset, render, ...props }: DirectusAssetProps) => {
-        console.warn('Deprecated: Please import DirectusAsset directly from react-directus');
+        console.warn('Deprecated: Please import the new `DirectusFile` component instead.');
         return <DirectusAsset asset={asset} render={render} {...props} />;
       },
       DirectusImage: ({ asset, render, ...props }: DirectusImageProps) => {
-        console.warn('Deprecated: Please import DirectusImage directly from react-directus');
+        console.warn('Deprecated: Please import the new `DirectusFile` component instead.');
         return <DirectusImage asset={asset} render={render} {...props} />;
       },
       _directusUser: user,
