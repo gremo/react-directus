@@ -13,13 +13,13 @@ export type DirectusAssetObject = string | ({ id: string } & Record<string, any>
  */
 export enum Fit {
   /** Covers both width/height by cropping/clipping to fit */
-  Cover = 'cover',
+  cover = 'cover',
   /** Contain within both width/height using "letterboxing" as needed */
-  Contain = 'contain',
+  contain = 'contain',
   /** Resize to be as large as possible, ensuring dimensions are less than or equal to the requested width and height */
-  Inside = 'inside',
+  inside = 'inside',
   /** Resize to be as small as possible, ensuring dimensions are greater than or equal to the requested width and height */
-  Outside = 'outside',
+  outside = 'outside',
 }
 
 /**
@@ -27,11 +27,11 @@ export enum Fit {
  */
 export enum Format {
   /** Will try to format it in ´webp´ or ´avif´ if the browser supports it, otherwise it will fallback to ´jpg´. */
-  Auto = 'auto',
-  Jpg = 'jpg',
-  Png = 'png',
-  Webp = 'webp',
-  Tiff = 'tiff',
+  auto = 'auto',
+  jpg = 'jpg',
+  png = 'png',
+  webp = 'webp',
+  tiff = 'tiff',
 }
 
 /**
