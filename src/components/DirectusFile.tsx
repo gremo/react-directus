@@ -13,13 +13,13 @@ export type DirectusAssetObject = string | ({ id: string } & Record<string, any>
  */
 export enum Fit {
   /** Covers both width/height by cropping/clipping to fit */
-  cover = 'cover',
+  Cover = 'cover',
   /** Contain within both width/height using "letterboxing" as needed */
-  contain = 'contain',
+  Contain = 'contain',
   /** Resize to be as large as possible, ensuring dimensions are less than or equal to the requested width and height */
-  inside = 'inside',
+  Inside = 'inside',
   /** Resize to be as small as possible, ensuring dimensions are greater than or equal to the requested width and height */
-  outside = 'outside',
+  Outside = 'outside',
 }
 
 /**
@@ -27,11 +27,11 @@ export enum Fit {
  */
 export enum Format {
   /** Will try to format it in ´webp´ or ´avif´ if the browser supports it, otherwise it will fallback to ´jpg´. */
-  auto = 'auto',
-  jpg = 'jpg',
-  png = 'png',
-  webp = 'webp',
-  tiff = 'tiff',
+  Auto = 'auto',
+  Jpg = 'jpg',
+  Png = 'png',
+  Webp = 'webp',
+  Tiff = 'tiff',
 }
 
 /**
@@ -70,7 +70,7 @@ export interface DirectusFileProps {
   asset: DirectusAssetObject;
   /** If the asset should be downloaded instead of rendered. */
   download?: boolean;
-  /** Eather a preset key or a custom transform object. */
+  /** Either a preset key or a custom transform object. */
   directusTransform?: Partial<TransformCustomProp> | string;
   /**
    * The filename of the image. If the filename is not provided, the image will be downloaded with the asset's id as filename.
