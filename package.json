@@ -38,7 +38,7 @@
   "devDependencies": {
     "@directus/sdk": "10.3.5",
     "@rollup/plugin-commonjs": "25.0.8",
-    "@rollup/plugin-node-resolve": "15.2.4",
+    "@rollup/plugin-node-resolve": "15.3.0",
     "@rollup/plugin-typescript": "11.1.6",
     "@testing-library/react": "14.3.1",
     "@types/jest": "29.5.13",
